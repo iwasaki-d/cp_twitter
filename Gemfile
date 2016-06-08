@@ -17,7 +17,7 @@ gem 'haml-rails'
 group :development, :test do
   gem 'byebug'
 
-  gem 'rspec'
+  gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'capybara'
 
