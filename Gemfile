@@ -16,17 +16,15 @@ gem 'devise'
 
 group :development, :test do
   gem 'byebug'
-
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'capybara'
-
 end
 
 group :development do
   gem 'spring'
-
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'quiet_assets'
 end
 
