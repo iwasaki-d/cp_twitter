@@ -1,0 +1,9 @@
+= simple_form_for(@twitter) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :text
+    = f.input :user_id
+
+  .form-actions
+    = f.button :submit
