@@ -1,14 +1,18 @@
-%h1 Hello cp_twitter!
+%h1 ようこそ cp_twitterへ!!
 
--if user_signed_in?
-  %p
-    Logged in as
-    %strong
-      = current_user.email
-  = link_to 'Edit profile', edit_user_registration_path, class: 'navbar-link'
-  |
-  = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'navbar-link'
+-unless user_signed_in?
+  %h2 Log in
+  = simple_form_for(@user, url: session_path(@user)) do |f|
+    = f.input :name, label: 'アカウント名称', autofocus: true
+    = f.input :password, label: 'パスワード', autocomplete: "off"
+    - if devise_mapping.rememberable?
+      = f.input :remember_me, as: :boolean
+    = f.button :submit, "ログイン"
+  %br/
+  = link_to 'アカウント作成', new_user_registration_path, class: 'navbar-link'
+  %br/
+  = link_to "パスワードを忘れたら", new_password_path(@user)
 -else
-  = link_to 'Sign up', new_user_registration_path, class: 'navbar-link'
+  = link_to 'アカウント編集', edit_user_registration_path, class: 'navbar-link'
   |
-  = link_to 'Login', new_user_session_path, class: 'navbar-link'
+  = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'navbar-link'
