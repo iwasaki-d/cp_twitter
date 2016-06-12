@@ -3,5 +3,5 @@
   = f.input :name, label: 'アカウント名', autofocus: true
   = f.input :password, label: 'パスワード', autocomplete: 'off'
   - if devise_mapping.rememberable?
-    = f.input :remember_me, as: :boolean, boolean_style: :inline, label: 'ログイン状態の維持'
+    = f.input :remember_me, as: :boolean, label: 'ログイン状態の維持'
   = f.button :submit, 'ログイン'

@@ -14,7 +14,7 @@ gem 'haml-rails'
 gem 'devise'
 gem 'simple_form'
 
-gem 'bootstrap-sass'
+gem 'bootstrap', '~> 4.0.0.alpha3'
 
 group :development, :test do
   gem 'byebug'
