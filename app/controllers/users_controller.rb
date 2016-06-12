@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
   def authenticate_current_user
     unless @user == current_user
-      redirect_to root_path
+      redirect_to root_url
     end
   end
 
