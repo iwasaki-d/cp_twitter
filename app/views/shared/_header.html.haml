@@ -1,0 +1,13 @@
+%nav.navbar.navbar-default
+  %div.navbar-header
+    = link_to 'Cp_Twitter', root_path, class: 'navbar-brand'
+  %div#gnavi.collapse.navbar-collapse
+    %ul.nav.navbar-nav.navbar-right
+      -unless user_signed_in?
+        %li
+          = link_to 'ログイン', new_user_session_path, class: 'navbar-link'
+        %li
+          = link_to 'アカウント作成', new_user_registration_path, class: 'navbar-link'
+      -else
+        %li
+          = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'navbar-link'
