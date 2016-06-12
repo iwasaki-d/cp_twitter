@@ -14,6 +14,8 @@ gem 'haml-rails'
 gem 'devise'
 gem 'simple_form'
 
+gem 'bootstrap-sass'
+
 group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
