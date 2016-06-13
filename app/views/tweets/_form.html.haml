@@ -1,8 +1,8 @@
-= simple_form_for(@twitter) do |f|
+= simple_form_for(@tweet) do |f|
   = f.error_notification
 
   .form-inputs
-    = f.input :text
+    = f.input :body
     = f.input :user_id
 
   .form-actions

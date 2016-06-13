@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
 
-  has_many :twitter
+  has_many :tweets
 
   validates_uniqueness_of :name
   validates_presence_of :name

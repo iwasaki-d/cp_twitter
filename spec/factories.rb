@@ -7,12 +7,12 @@ FactoryGirl.define do
     email ""
 
     after(:create) do |user|
-      5.times { create(:twitter, user: user) }
+      5.times { create(:tweet, user: user) }
     end
   end
 
-  factory :twitter do
-    sequence(:text) { |text_n| "#{user.name}-テストツィート#{text_n}" }
+  factory :tweet do
+    sequence(:body) { |text_n| "#{user.name}-テストツィート#{text_n}" }
     user
   end
 end

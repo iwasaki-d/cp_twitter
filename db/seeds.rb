@@ -9,6 +9,6 @@
 require 'factory_girl'
 
 User.delete_all
-Twitter.delete_all
+Tweet.delete_all
 
 FactoryGirl.create_list(:user, 5)
