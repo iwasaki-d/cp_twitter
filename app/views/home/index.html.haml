@@ -1,12 +1,12 @@
 %h1 ようこそ cp_twitterへ!!
 
--unless user_signed_in?
+-if user_signed_in?
+  = link_to 'アカウント編集', edit_user_registration_path, class: 'navbar-link'
+  \|
+  = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'navbar-link'
+-else
   = render 'devise/shared/singup'
   %br/
   = link_to 'アカウント作成', new_user_registration_path, class: 'navbar-link'
   %br/
   = link_to 'パスワードを忘れたら', new_password_path(@user)
--else
-  = link_to 'アカウント編集', edit_user_registration_path, class: 'navbar-link'
-  |
-  = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'navbar-link'

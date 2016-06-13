@@ -8,14 +8,14 @@ class UsersController < ApplicationController
 
   private
 
-  def set_user
-    @user = User.find(params[:id])
-  end
-
-  def authenticate_current_user
-    unless @user == current_user
-      redirect_to root_url
+    def set_user
+      @user = User.find(params[:id])
     end
-  end
+
+    def authenticate_current_user
+      unless @user == current_user
+        redirect_to root_url
+      end
+    end
 
 end

@@ -1,11 +1,11 @@
 %nav.navbar.navbar-light.bg-faded
   = link_to 'Cp_Twitter', root_path, class: 'navbar-brand'
   %ul.nav.navbar-nav.pull-xs-right
-    -unless user_signed_in?
+    -if user_signed_in?
+      %li.nav-item
+        = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
+    -else
       %li.nav-item
         = link_to 'ログイン', new_user_session_path, class: 'nav-link'
       %li.nav-item
         = link_to 'アカウント作成', new_user_registration_path, class: 'nav-link'
-    -else
-      %li.nav-item
-        = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
