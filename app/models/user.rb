@@ -3,8 +3,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :authentication_keys => [:name]
 
-  validates :text, presence: true, length: {minimum: 1, maximum: 140}
-  validates :user_id, presence: true
+  validates :name, presence: true
 
   has_many :twitter
 
