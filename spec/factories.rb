@@ -1,4 +1,8 @@
 FactoryGirl.define do
+  factory :following do
+    user_id 1
+    following_user_id 1
+  end
 
   factory :user do
     sequence(:name) { |n| "user#{n}" }
