@@ -8,5 +8,11 @@
           %div.card-text
             ユーザー情報欄
     %div.col-xs-8
-
+      - @tweets.each do |tweet|
+        %div.card-block
+          %div.card
+            %div.card-header
+              #{tweet.user.name}
+            %div.card-text
+              #{tweet.body}
 
