@@ -18,6 +18,5 @@ RSpec.describe User, type: :model do
         expect(new_user.save).to be_falsey
       end
     end
-
   end
 end
