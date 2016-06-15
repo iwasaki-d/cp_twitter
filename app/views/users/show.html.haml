@@ -8,7 +8,7 @@
           %div.card-text
             ユーザー情報欄
     %div.col-xs-8
-      - @tweets.each do |tweet|
+      - @user.get_tweets_include_tweets_of_following.each do |tweet|
         %div.card-block
           %div.card
             %div.card-header

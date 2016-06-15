@@ -31,4 +31,9 @@ class User < ActiveRecord::Base
   def email_changed?
     false
   end
+
+  def get_tweets_include_tweets_of_following
+    Tweet.order_latest.where(user_id: [self.id] << self.following.pluck(:following_user_id))
+  end
+
 end
