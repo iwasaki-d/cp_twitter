@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160613215240) do
+ActiveRecord::Schema.define(version: 20160614215239) do
+
+  create_table "following", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "following_user_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "following", ["following_user_id"], name: "index_following_on_following_user_id"
 
   create_table "tweets", force: :cascade do |t|
     t.string   "body"

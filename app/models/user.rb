@@ -3,12 +3,16 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :authentication_keys => [:name]
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 
   has_many :tweets
 
-  validates_uniqueness_of :name
-  validates_presence_of :name
+  has_many :my_following_relationship, class_name: 'Following', foreign_key: 'user_id'
+  has_many :following, through: :my_following_relationship
+
+  has_many :followed_me_relationship, class_name: 'Following', foreign_key: 'following_user_id'
+  has_many :follower, through: :followed_me_relationship
+
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
