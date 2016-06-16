@@ -11,7 +11,7 @@
               #{@user.following_count}
             フォロワー
             %p
-              #{@user.follower_count}
+              #{@user.followers_count}
 
     %div.col-xs-8
       - @user.get_tweets_include_tweets_of_following.each do |tweet|
