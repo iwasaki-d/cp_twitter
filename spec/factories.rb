@@ -33,7 +33,7 @@ FactoryGirl.define do
     user
   end
 
-  factory :following do
+  factory :relationship do
     user_id 1
     following_user_id 1
   end

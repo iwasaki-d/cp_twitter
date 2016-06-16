@@ -7,11 +7,11 @@ class User < ActiveRecord::Base
 
   has_many :tweets
 
-  has_many :my_following_relationship, class_name: 'Following', foreign_key: 'user_id'
-  has_many :following, through: :my_following_relationship, source: :following_relation
+  has_many :my_following_relationships, class_name: 'Relationship', foreign_key: 'user_id'
+  has_many :following, through: :my_following_relationships, source: :following_relationship
 
-  has_many :followed_me_relationship, class_name: 'Following', foreign_key: 'following_user_id'
-  has_many :followers, through: :followed_me_relationship, source: :follower_relation
+  has_many :followed_me_relationships, class_name: 'Relationship', foreign_key: 'following_user_id'
+  has_many :followers, through: :followed_me_relationships, source: :follower_relationship
 
 
   def self.find_first_by_auth_conditions(warden_conditions)

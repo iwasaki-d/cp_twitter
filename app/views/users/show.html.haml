@@ -13,12 +13,12 @@
             %p
               #{@user.followers_count}
             - unless current_user? @user
-              -if @following
-                = simple_form_for(@following, url: following_path(@following.following_user_id), method: 'delete') do |f|
+              -if @relationship
+                = simple_form_for(@relationship, url: relationship_path(@relationship.following_user_id), method: 'delete') do |f|
                   = f.input :following_user_id, as: :hidden, input_html: { value: @user.id }
                   = f.button :submit, 'フォロー解除', class: "btn btn-danger", data: {disable_with: "フォロー解除中..."}
               -else
-                = simple_form_for(Following.new, url: url_for(controller: 'following', action: 'create'), method: 'post') do |f|
+                = simple_form_for(Relationship.new, url: url_for(controller: 'relationships', action: 'create'), method: 'post') do |f|
                   = f.input :following_user_id, as: :hidden, input_html: { value: @user.id }
                   = f.button :submit, 'フォローする', class: "btn btn-primary", data: {disable_with: "フォロー処理中..."}
 

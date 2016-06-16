@@ -4,10 +4,10 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show], format: false do
     resources :tweets, format: false
-    resources :following, param: :following_user_id, only: [:index], format: false
+    resources :relationships, param: :following_user_id, only: [:index], format: false
   end
 
-  resources :following, param: :following_user_id, only: [:create, :destroy], format: false
+  resources :relationships, param: :following_user_id, only: [:create, :destroy], format: false
 
   root to: 'home#index'
 end
