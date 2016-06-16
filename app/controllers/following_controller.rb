@@ -5,15 +5,15 @@ class FollowingController < ApplicationController
   def create
     @following = Following.new(following_params)
     if @following.save
-      render notice: 'フォローしました。'
+      redirect_to :back, notice: 'フォローしました。'
     else
-      render alert: 'フォローに失敗しました。'
+      redirect_to :back, alert: 'フォローに失敗しました。'
     end
   end
 
   def destroy
     @following.destroy
-    render notice: 'フォローを解除しました。'
+    redirect_to :back, notice: 'フォローを解除しました。'
   end
 
   private
@@ -23,7 +23,7 @@ class FollowingController < ApplicationController
   end
 
   def set_following
-    @following = current_user.following.find_by(params[:following_user_id])
+    @following = current_user.my_following_relationship.find_by(following_user_id:params[:following_user_id])
   end
 
   def following_params
