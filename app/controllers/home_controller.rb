@@ -7,8 +7,8 @@ class HomeController < ApplicationController
 
   private
 
-    def set_user
-      @user = current_user || User.new
-    end
+  def set_user
+    @user = current_user || User.new
+  end
 
 end
