@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160615220547) do
+ActiveRecord::Schema.define(version: 20160616135953) do
 
   create_table "following", force: :cascade do |t|
     t.integer  "user_id"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20160615220547) do
   end
 
   add_index "following", ["following_user_id"], name: "index_following_on_following_user_id"
+  add_index "following", ["user_id", "following_user_id"], name: "index_following_unique", unique: true
 
   create_table "tweets", force: :cascade do |t|
     t.string   "body"
