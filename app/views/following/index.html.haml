@@ -1,23 +1,22 @@
-%h1 Listing following
-
-%table
-  %thead
-    %tr
-      %th User
-      %th Following user
-      %th
-      %th
-      %th
-
-  %tbody
-    - @following.each do |following|
-      %tr
-        %td= following.user_id
-        %td= following.following_user_id
-        %td= link_to 'Show', following
-        %td= link_to 'Edit', edit_following_path(following)
-        %td= link_to 'Destroy', following, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Following', new_following_path
+%div.container-fluid
+  %div.row
+    %div#user-sidebar.col-xs-4
+      %div.card-block
+        %div#user-profile.card
+          %div.card-title
+            %h1 #{@user.name}'s page
+          %div.card-text
+            フォロー
+            %p
+              #{@user.following_count}
+            フォロワー
+            %p
+              #{@user.followers_count}
+    %div.col-xs-8
+      - @user.following.each do |following|
+        %div.card-block
+          %div.card
+            %div.card-header
+              #{following.name}
+            %div.card-text
+              #{following.name}

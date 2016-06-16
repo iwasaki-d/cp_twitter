@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, format: false
 
-  resources :users, only: [:show] do
-    resources :tweets
+  resources :users, only: [:show], format: false do
+    resources :tweets, format: false
+    resources :following, param: :following_user_id, only: [:index], format: false
   end
+
+  resources :following, param: :following_user_id, only: [:create, :destroy], format: false
 
   root to: 'home#index'
 end

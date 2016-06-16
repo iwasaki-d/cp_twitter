@@ -1,4 +1,5 @@
 class Following < ActiveRecord::Base
+
   validates :following_relation, presence: true
   validates :follower_relation, presence: true
 

@@ -12,9 +12,12 @@
             フォロワー
             %p
               #{@user.followers_count}
+            - unless current_user? @user
+              = link_to 'フォローする', {controller: :following, action: :create,following: {following_user_id: @user.id}},
+               method: :post  , class: "btn btn-primary", remote: true
 
     %div.col-xs-8
-      - @user.get_tweets_include_tweets_of_following.each do |tweet|
+      - @tweets.each do |tweet|
         %div.card-block
           %div.card
             %div.card-header

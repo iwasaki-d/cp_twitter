@@ -1,9 +1,12 @@
 class UsersController < ApplicationController
   before_action :set_user
-  before_action :authenticate_current_user
 
   def show
-
+    if @user == current_user
+      @tweets = current_user.get_tweets_include_tweets_of_following
+    else
+      @tweets = @user.tweets
+    end
   end
 
   private
@@ -11,11 +14,4 @@ class UsersController < ApplicationController
     def set_user
       @user = User.find(params[:id])
     end
-
-    def authenticate_current_user
-      unless @user == current_user
-        redirect_to root_url
-      end
-    end
-
 end
