@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160614215239) do
+ActiveRecord::Schema.define(version: 20160615220547) do
 
   create_table "following", force: :cascade do |t|
     t.integer  "user_id"
@@ -31,15 +31,6 @@ ActiveRecord::Schema.define(version: 20160614215239) do
 
   add_index "tweets", ["user_id"], name: "index_tweets_on_user_id"
 
-  create_table "twitter", force: :cascade do |t|
-    t.string   "text"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "twitter", ["user_id"], name: "idx_user_id"
-
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -54,6 +45,8 @@ ActiveRecord::Schema.define(version: 20160614215239) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "name"
+    t.integer  "following_count",        default: 0,  null: false
+    t.integer  "followers_count",        default: 0,  null: false
   end
 
   add_index "users", ["name"], name: "index_users_on_name", unique: true

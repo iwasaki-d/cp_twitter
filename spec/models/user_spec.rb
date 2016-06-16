@@ -18,10 +18,34 @@ RSpec.describe User, type: :model do
         expect(User.find_by(id: 2).following.pluck(:id)).to match_array [3, 4]
       end
 
-      it 'followerで対象ユーザーをフォローしているユーザー一覧が取得出来ること' do
-        expect(User.find_by(id: 3).follower.pluck(:id)).to match_array [1, 2]
+      it 'followersで対象ユーザーをフォローしているユーザー一覧が取得出来ること' do
+        expect(User.find_by(id: 3).followers.pluck(:id)).to match_array [1, 2]
       end
 
+      it 'followingを登録したユーザーのフォロー数が増えること' do
+        # counter_cacheを利用するのでフォロー数が減るケースはやらない。
+        # counter_cacheが機能していることを確認する
+        user = User.find_by(id: 3)
+        new_following_user = User.find_by(id: 5)
+
+        new_following = build(:following,
+                              user_id: user,
+                              following_user_id: new_following_user)
+        new_following.save
+        expect { new_following.run_callbacks(:commit)}.to change { user.following_count }.by(1)
+      end
+
+      it 'followingされたユーザーのフォロワー数が増えること' do
+        # counter_cacheが機能していることを確認する
+        user = User.find_by(id: 3)
+        new_following_user = User.find_by(id: 5)
+
+        new_following = build(:following,
+                              user_id: user,
+                              following_user_id: new_following_user)
+        new_following.save
+        expect { new_following.run_callbacks(:commit) }.to change { new_following_user.followers_count }.by(1)
+      end
 
     end
 

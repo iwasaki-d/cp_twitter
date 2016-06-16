@@ -6,7 +6,13 @@
           %div.card-title
             %h1 #{@user.name}'s page
           %div.card-text
-            ユーザー情報欄
+            フォロー
+            %p
+              #{@user.following_count}
+            フォロワー
+            %p
+              #{@user.follower_count}
+
     %div.col-xs-8
       - @user.get_tweets_include_tweets_of_following.each do |tweet|
         %div.card-block
