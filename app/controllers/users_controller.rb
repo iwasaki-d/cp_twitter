@@ -20,5 +20,4 @@ class UsersController < ApplicationController
     @relationship = current_user.following_relationships.find_by(following_user_id: params[:id])
   end
 
-
 end
