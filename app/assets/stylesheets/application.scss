@@ -3,3 +3,12 @@
  *= require_self
  */
 @import "bootstrap";
+
+#error_explanation {
+  @extend .alert;
+  @extend .alert-danger;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
