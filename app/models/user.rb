@@ -7,11 +7,12 @@ class User < ActiveRecord::Base
 
   has_many :tweets
 
-  has_many :my_following_relationships, class_name: 'Relationship', foreign_key: 'user_id'
-  has_many :following, through: :my_following_relationships, source: :following_relationship
+  has_many :following_relationships, class_name: 'Relationship', foreign_key: 'user_id'
+  has_many :following, through: :following_relationships, source: :following_relationship
 
-  has_many :followed_me_relationships, class_name: 'Relationship', foreign_key: 'following_user_id'
-  has_many :followers, through: :followed_me_relationships, source: :follower_relationship
+  #このuserをfollowしている関係なのでこのuser.idがrelationships.following_user_idに格納されているレコードが対象になる
+  has_many :follower_relationships, class_name: 'Relationship', foreign_key: 'following_user_id'
+  has_many :followers, through: :follower_relationships, source: :follower_relationship
 
 
   def self.find_first_by_auth_conditions(warden_conditions)

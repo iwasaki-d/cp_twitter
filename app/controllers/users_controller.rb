@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def set_relationship
-    @relationship = current_user.my_following_relationships.find_by(following_user_id: params[:id])
+    @relationship = current_user.following_relationships.find_by(following_user_id: params[:id])
   end
 
 
