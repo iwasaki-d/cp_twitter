@@ -1,0 +1,24 @@
+%div#user-sidebar.col-xs-4
+  %div.card-block
+    %div#user-profile.card
+      %div.card-title
+        %h1 #{@user.name}'s page
+      %div.card-text
+        =link_to 'フォロー', following_user_path(@user)
+        %div
+          %stroing
+            =link_to @user.following_count, following_user_path(@user)
+        =link_to  'フォロワー', followers_user_path(@user)
+        %div
+          %strong
+            =link_to @user.followers_count, followers_user_path(@user)
+        - relationship = current_user.following_relationships.find_or_initialize_by(following_user_id: @user)
+        - unless current_user? @user
+          -if relationship.new_record?
+            = simple_form_for(relationship, url: user_relationships_path(@user), method: '@post') do |f|
+              = f.input :following_user_id, as: :hidden, input_html: { value: @user.id }
+              = f.button :submit, 'フォローする', class: "btn btn-primary", data: {disable_with: "フォロー処理中..."}
+          -else
+            = simple_form_for(relationship, url: user_relationships_path(@user), method: 'delete') do |f|
+              = f.input :following_user_id, as: :hidden, input_html: { value: @user.id }
+              = f.button :submit, 'フォロー解除', class: "btn btn-danger", data: {disable_with: "フォロー解除中..."}

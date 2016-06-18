@@ -18,4 +18,3 @@ class Relationship < ActiveRecord::Base
   validates :following_user_id, presence: true
 
 end
-

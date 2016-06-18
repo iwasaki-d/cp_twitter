@@ -2,11 +2,9 @@
   %div.row
     =render 'shared/sidebar'
     %div.col-xs-8
-      - @tweets.each do |tweet|
+      - @user.followers.each do |user|
         %div.card-block
           %div.card
             %div.card-header
-              #{tweet.user.name}
+              #{user.name}
             %div.card-text
-              #{tweet.body}
-
