@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
     false
   end
 
-  def get_tweets_include_tweets_of_following
+  def timeline
     Tweet.order_latest.where(user_id: [self.id] << self.following.pluck(:following_user_id))
   end
 

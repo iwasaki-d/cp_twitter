@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def show
     if @user == current_user
-      @tweets = current_user.get_tweets_include_tweets_of_following
+      @tweets = current_user.timeline
     else
       @tweets = @user.tweets
     end
