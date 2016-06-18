@@ -1,4 +1,5 @@
 = simple_form_for(@user, url: session_path(@user)) do |f|
+  = devise_error_messages!
   = f.input :name, label: 'アカウント名', autofocus: true
   = f.input :password, label: 'パスワード', autocomplete: 'off'
   - if devise_mapping.rememberable?

@@ -3,6 +3,8 @@
   %ul.nav.navbar-nav.pull-xs-right
     -if user_signed_in?
       %li.nav-item
+        = link_to 'アカウント編集', edit_user_registration_path, class: 'nav-link'
+      %li.nav-item
         = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
     -else
       %li.nav-item
