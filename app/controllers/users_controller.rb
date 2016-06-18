@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :set_user
-  before_action :set_relationship
 
   def show
     if @user == current_user
@@ -15,9 +14,4 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
-
-  def set_relationship
-    @relationship = current_user.following_relationships.find_by(following_user_id: params[:id])
-  end
-
 end

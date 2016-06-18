@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :following_relationships, class_name: 'Relationship', foreign_key: 'user_id'
   has_many :following, through: :following_relationships, source: :following_relationship
 
-  #このuserをfollowしている関係なのでこのuser.idがrelationships.following_user_idに格納されているレコードが対象になる
+  # このuserをfollowしている関係なのでこのuser.idがrelationships.following_user_idに格納されているレコードが対象になる
   has_many :follower_relationships, class_name: 'Relationship', foreign_key: 'following_user_id'
   has_many :followers, through: :follower_relationships, source: :follower_relationship
 
