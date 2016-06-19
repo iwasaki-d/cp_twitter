@@ -2,10 +2,12 @@
   %div.row
     =render 'shared/sidebar'
     %div.col-xs-8
-      - @user.following.each do |user|
+      - @user.following.each do |following|
         %div.card-block
           %div.card
             %div.card-header
-              #{user.name}
+              =link_to following.name, user_path(following)
+              %div.pull-xs-right
+                = render 'shared/follow_button', following_user: following
             %div.card-text
 

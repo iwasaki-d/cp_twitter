@@ -2,6 +2,8 @@
   %div.row
     =render 'shared/sidebar'
     %div.col-xs-8
+      %br/
+      =link_to 'ツィートする', new_user_tweet_path(@user), method: :get, class: 'btn btn-primary btn-sm'
       - @tweets.each do |tweet|
         %div.card-block
           %div.card
@@ -9,4 +11,7 @@
               #{tweet.user.name}
             %div.card-text
               #{tweet.body}
-
+            %div.card-footer
+              -if my_tweet? tweet
+                =link_to '編集する', edit_user_tweet_path(@user, tweet), method: :get, class: 'btn btn-primary btn-sm'
+                =link_to '削除する', user_tweet_path(@user, tweet), method: :delete, class: 'btn btn-danger btn-sm'
