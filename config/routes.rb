@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :users, format: false
+  devise_for :users, skip: [:password], format: false
 
   resources :users, only: [:show], format: false do
     member do
