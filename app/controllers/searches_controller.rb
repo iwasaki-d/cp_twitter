@@ -1,13 +1,12 @@
 class SearchesController < ApplicationController
 
   def search
-
     # Tweets.ransackではtweetsテーブルに対してuserテーブルがleft_outer_joinでつながるので、tweet.bodyとuser.nameで検索をかけた場合に
-    # Tweetsがないユーザーは取得できない
-    @tweets = Tweet.ransack(ransack_params).result(distinct: true)
+    # Tweetsがないユーザーは取得できないことに注意
+    @tweets = Tweet.ransack(ransack_params).result(distinct: true).page(params[:tweets_page]).per(5)
 
-    # Tweetsとは逆にuserテーブルに対してtweetsテーブルをleft_outer_joinさせる検索も実行して、tweetsがないユーザーも検索結果に表示させる
-    @users  = User.ransack({name_or_tweets_body_cont: ransack_params[:body_or_user_name_cont]}).result(distinct: true)
+    # 検索フォームから検索条件の入力を1回でtweetsとuserを検索したいため、tweetの検索条件からuserの検索条件を作成している
+    @users  = User.ransack({name_or_tweets_body_cont: ransack_params[:body_or_user_name_cont]}).result(distinct: true).page(params[:users_page]).per(2)
   end
 
   private

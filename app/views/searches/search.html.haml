@@ -12,6 +12,7 @@
                 %div.card-text
                   (ユーザー紹介文)
                 %div.card-footer
+          =paginate @users, param_name: 'users_page'
         -else
           %h2 検索項目に合致するアカウントがありませんでした。
       %div
@@ -24,5 +25,6 @@
                 %div.card-text
                   #{tweet.body}
                 %div.card-footer
+          =paginate @tweets, param_name: 'tweets_page'
         -else
           %h2 検索項目に合致するツイートがありませんでした。
