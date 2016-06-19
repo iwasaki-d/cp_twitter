@@ -1,6 +1,6 @@
 = simple_form_for(@tweet, url: [@user, @tweet]) do |f|
   = f.error_notification
   .form-inputs
-    = f.input :body,label: 'ツイート', as: :text, class:'textarea', :input_html => {:rows => 10}
+    = f.input :body,label: 'ツィート', as: :text, class:'textarea', :input_html => {:rows => 10}
   .form-actions
-    = f.button :submit
+    = f.button :submit, data: {disable_with: "ツィート処理中..."}
