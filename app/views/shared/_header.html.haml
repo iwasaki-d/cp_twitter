@@ -4,7 +4,7 @@
     -if user_signed_in?
       %li.nav-item
         - q=Tweet.ransack
-        = search_form_for(q, url: search_tweets_path(), class: 'navbar-form form-inline') do |f|
+        = search_form_for(q, url: search_user_path(current_user), class: 'navbar-form form-inline') do |f|
           = f.input :body_or_user_name_cont, label: false, placeholder: 'ツィート・ユーザー名'
           = f.button :submit, class: 'btn btn-primary'
       %li.nav-item

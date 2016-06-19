@@ -1,0 +1,27 @@
+%div.container-fluid
+  %div.row
+    %div.col-xs-2
+    %div.col-xs-8
+      %div
+        -if @users.count > 0
+          -@users.each do |user|
+            %div.card-block
+              %div.card
+                %div.card-header
+                  =link_to user.name, user_path(user)
+                %div.card-text
+                %div.card-footer
+        -else
+          %h2 検索項目に合致するアカウントがありませんでした。
+      %div
+        -if @tweets.count > 0
+          -@tweets.order_latest.each do |tweet|
+            %div.card-block
+              %div.card
+                %div.card-header
+                  =link_to tweet.user.name, user_path(tweet.user.id)
+                %div.card-text
+                  #{tweet.body}
+                %div.card-footer
+        -else
+          %h2 検索項目に合致するツイートがありませんでした。

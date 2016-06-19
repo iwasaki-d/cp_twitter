@@ -6,17 +6,11 @@ Rails.application.routes.draw do
     member do
       get :following
       get :followers
+      get :search, controller: :searches
     end
     resources :tweets, format: false
     resource :relationships, only: [:create, :destroy], format: false
   end
-
-  resource :tweets , only: [:search], format:false do
-    collection do
-      get :search
-    end
-  end
-
 
   root to: 'home#index'
 end
