@@ -16,5 +16,4 @@
         %div
           %strong
             =link_to @user.followers_count, followers_user_path(@user)
-        - unless current_user? @user
           =render 'shared/follow_button', following_user: @user
