@@ -21,6 +21,18 @@ RSpec.describe User, type: :model do
       it 'followersで対象ユーザーをフォローしているユーザー一覧が取得出来ること' do
         expect(User.find_by(id: 3).followers.pluck(:id)).to match_array [1, 2]
       end
+
+      it '削除することで関連データも削除されること' do
+        delete_user = User.find_by(id: 5)
+        delete_user.following_relationships.create(following_user_id:1)
+
+        expect(Relationship.where(user_id: delete_user.id).size).to be > 0
+        expect(Tweet.where(user_id: delete_user.id).size).to be > 0
+
+        delete_user.destroy
+        expect(Relationship.where(user_id: delete_user.id).size).to eq(0)
+        expect(Tweet.where(user_id: delete_user.id).size).to eq(0)
+      end
     end
 
     context '異常系' do
