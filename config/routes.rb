@@ -11,5 +11,12 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destroy], format: false
   end
 
+  resource :tweets , only: [:search], format:false do
+    collection do
+      get :search
+    end
+  end
+
+
   root to: 'home#index'
 end

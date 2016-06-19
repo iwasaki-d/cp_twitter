@@ -2,6 +2,7 @@ class TweetsController < ApplicationController
   before_action :set_user
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_current_user, only: [:edit, :update, :destroy]
+  before_action :set_tweet, only: [:show, :edit, :update, :destroy]
 
   def show
   end
@@ -36,6 +37,10 @@ class TweetsController < ApplicationController
     redirect_to user_tweets_path(@user), notice: 'ツイートを削除しました。'
   end
 
+  def search
+    @tweets = Tweet.ransack(tweet_ransack_params).result
+  end
+
   private
 
   def set_user
@@ -55,4 +60,9 @@ class TweetsController < ApplicationController
   def tweet_params
     params.require(:tweet).permit(:body)
   end
+
+  def tweet_ransack_params
+    params.require(:q).permit(:body_or_user_name_cont).try(:merge, m: 'or')
+  end
+
 end

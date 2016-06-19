@@ -12,6 +12,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'haml-rails'
 gem 'devise'
 gem 'simple_form'
+gem 'ransack'
 
 gem 'bootstrap', '~> 4.0.0.alpha3'
 
