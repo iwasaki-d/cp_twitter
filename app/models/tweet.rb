@@ -2,7 +2,7 @@ class Tweet < ActiveRecord::Base
   validates :user, presence: true
   validates :body, presence: true, length: {minimum: 1, maximum: 140}
 
-  belongs_to :user
+  belongs_to :user, counter_cache:  'tweets_count'
 
   scope :order_latest, -> { order("created_at desc") }
 

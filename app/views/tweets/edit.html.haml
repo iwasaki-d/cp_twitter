@@ -1,7 +1,7 @@
 %h1 ツィート編集
-
-= render 'form'
-
+%div.row
+  %div.col-xs-8
+    = render 'form'
 = link_to '詳細', user_tweet_path
 \|
-= link_to '戻る', user_path(@user)
+= link_to '戻る', user_tweets_path(@user)

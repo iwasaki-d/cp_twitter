@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160616215626) do
+ActiveRecord::Schema.define(version: 20160619040006) do
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "user_id"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20160616215626) do
     t.string   "name"
     t.integer  "following_count",        default: 0,  null: false
     t.integer  "followers_count",        default: 0,  null: false
+    t.integer  "tweets_count",           default: 0,  null: false
   end
 
   add_index "users", ["name"], name: "index_users_on_name", unique: true

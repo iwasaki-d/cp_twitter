@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       get :following
       get :followers
     end
-    resources :tweets, except: [:index], format: false
+    resources :tweets, format: false
     resource :relationships, only: [:create, :destroy], format: false
   end
 

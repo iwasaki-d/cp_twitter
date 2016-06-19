@@ -1,5 +1,5 @@
 %h1 ツイートする
-
-= render 'form'
-
-= link_to '戻る', user_path(@user)
+%div.row
+  %div.col-xs-8
+    = render 'form'
+= link_to '戻る', user_tweets_path(@user)

@@ -14,10 +14,10 @@ class TweetsController < ApplicationController
   end
 
   def create
-    @tweet = current_user.tweets.build(tweet_params)
+      @tweet = current_user.tweets.build(tweet_params)
 
     if @tweet.save
-      redirect_to user_path(@user), notice: 'ツイートしました。'
+      redirect_to user_tweets_path(@user), notice: 'ツイートしました。'
     else
       render :new
     end
@@ -25,7 +25,7 @@ class TweetsController < ApplicationController
 
   def update
     if @tweet.update(tweet_params)
-      redirect_to user_path(@user), notice: 'ツイートを変更しました。'
+      redirect_to user_tweets_path(@user), notice: 'ツイートを変更しました。'
     else
       render :edit
     end
@@ -33,7 +33,7 @@ class TweetsController < ApplicationController
 
   def destroy
     @tweet.destroy
-    redirect_to user_path(@user), notice: 'ツイートを削除しました。'
+    redirect_to user_tweets_path(@user), notice: 'ツイートを削除しました。'
   end
 
   private

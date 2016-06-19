@@ -4,6 +4,10 @@
       %div.card-title
         %h1 #{@user.name}'s page
       %div.card-text
+        =link_to 'ツイート', user_tweets_path(@user)
+        %div
+          %stroing
+            =link_to @user.tweets_count, user_tweets_path(@user)
         =link_to 'フォロー', following_user_path(@user)
         %div
           %stroing
