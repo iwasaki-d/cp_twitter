@@ -1,11 +1,9 @@
 %div.container-fluid
-  %div.row
+  %div.row.m-t-1
     =render 'shared/sidebar'
     %div.col-xs-8
-      %br/
-      =link_to 'ツィートする', new_user_tweet_path(@user), method: :get, class: 'btn btn-primary btn-sm'
       - @tweets.each do |tweet|
-        %div.card
+        %div.card.card-tweet
           %div.card-header
             #{tweet.user.name}
           %div.card-block

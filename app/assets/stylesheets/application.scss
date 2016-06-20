@@ -12,3 +12,16 @@
     margin: 0 0 30px 0;
   }
 }
+
+.card-user {
+  height: 10rem;
+}
+
+.card-tweet {
+  margin-bottom: 0 !important;
+
+  .card-footer {
+    background-color: white;
+    border-color: white;
+  }
+}

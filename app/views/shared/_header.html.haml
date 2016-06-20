@@ -11,6 +11,10 @@
         = link_to 'アカウント編集', edit_user_registration_path, class: 'nav-link'
       %li.nav-item
         = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
+      %li.nav-item
+        = link_to 'ツィートする', new_user_tweet_path(@user), method: :get, class: 'nav-link btn btn-info btn-sm',
+         style: 'color:white;'
+
     -else
       %li.nav-item
         = link_to 'ログイン', new_user_session_path, class: 'nav-link'

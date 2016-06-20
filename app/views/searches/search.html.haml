@@ -1,5 +1,5 @@
 %div.container-fluid
-  %div.row
+  %div.row.m-t-1
     %div.col-xs-2
     %div.col-xs-8
       %h2 アカウント
@@ -10,18 +10,18 @@
               %div.card
                 %div.card-header
                   =link_to user.name, user_path(user)
-                %div.card-block
+                %div.card-block.card-user
                   %div.card-text
                     (ユーザー紹介文)
                 %div.card-footer
         =paginate @users, param_name: 'users_page'
       -else
-        %h3 検索項目に合致するアカウントがありませんでした。
+        %h3.m-t-1 検索項目に合致するアカウントがありませんでした。
       %div
-        %h2 ツイート
+        %h2.m-t-1 ツイート
         -if @tweets.count > 0
           -@tweets.order_latest.each do |tweet|
-            %div.card
+            %div.card.card-tweet
               %div.card-header
                 =link_to tweet.user.name, user_path(tweet.user.id)
               %div.card-block
@@ -30,4 +30,4 @@
               %div.card-footer
           =paginate @tweets, param_name: 'tweets_page'
         -else
-          %h3 検索項目に合致するツイートがありませんでした。
+          %h3.m-t-1 検索項目に合致するツイートがありませんでした。
