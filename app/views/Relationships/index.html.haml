@@ -1,8 +1,8 @@
 %div.container-fluid
   %div.row
     %div#user-sidebar.col-xs-4
-      %div.card-block
-        %div#user-profile.card
+      %div#user-profile.card
+        %div.card-block
           %div.card-title
             %h1 #{@user.name}'s page
           %div.card-text
@@ -14,9 +14,9 @@
               #{@user.followers_count}
     %div.col-xs-8
       - @user.following.each do |following|
-        %div.card-block
-          %div.card
-            %div.card-header
-              #{following.name}
+        %div.card
+          %div.card-header
+            #{following.name}
+          %div.card-block
             %div.card-text
               #{following.name}

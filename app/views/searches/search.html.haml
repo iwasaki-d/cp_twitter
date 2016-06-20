@@ -2,29 +2,32 @@
   %div.row
     %div.col-xs-2
     %div.col-xs-8
-      %div
-        -if @users.count > 0
-          -@users.each do |user|
-            %div.card-block
+      %h2 アカウント
+      -if @users.count > 0
+        %div.card-deck-wrapper
+          %div.card-deck
+            -@users.each do |user|
               %div.card
                 %div.card-header
                   =link_to user.name, user_path(user)
-                %div.card-text
-                  (ユーザー紹介文)
+                %div.card-block
+                  %div.card-text
+                    (ユーザー紹介文)
                 %div.card-footer
-          =paginate @users, param_name: 'users_page'
-        -else
-          %h2 検索項目に合致するアカウントがありませんでした。
+        =paginate @users, param_name: 'users_page'
+      -else
+        %h3 検索項目に合致するアカウントがありませんでした。
       %div
+        %h2 ツイート
         -if @tweets.count > 0
           -@tweets.order_latest.each do |tweet|
-            %div.card-block
-              %div.card
-                %div.card-header
-                  =link_to tweet.user.name, user_path(tweet.user.id)
+            %div.card
+              %div.card-header
+                =link_to tweet.user.name, user_path(tweet.user.id)
+              %div.card-block
                 %div.card-text
                   #{tweet.body}
-                %div.card-footer
+              %div.card-footer
           =paginate @tweets, param_name: 'tweets_page'
         -else
-          %h2 検索項目に合致するツイートがありませんでした。
+          %h3 検索項目に合致するツイートがありませんでした。
