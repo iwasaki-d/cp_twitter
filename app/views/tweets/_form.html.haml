@@ -1,4 +1,4 @@
-= simple_form_for(@tweet, url: [@user, @tweet]) do |f|
+= simple_form_for(@tweet, url: [current_user, @tweet]) do |f|
   = f.error_notification
   .form-inputs
     = f.input :body,label: 'ツィート', as: :text, class:'textarea', :input_html => {:rows => 10}

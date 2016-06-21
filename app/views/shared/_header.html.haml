@@ -12,11 +12,11 @@
       %li.nav-item
         = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
       %li.nav-item
-        = link_to 'ツィートする', new_user_tweet_path(current_user), method: :get, class: 'nav-link btn btn-info btn-sm',
-         style: 'color:white;'
-
+        = button_tag 'ツィートする', class: 'nav-link btn btn-info btn-sm',
+          data: {toggle: "modal", target:"#doTweet"}, style:'color:white;'
     -else
       %li.nav-item
         = link_to 'ログイン', new_user_session_path, class: 'nav-link'
       %li.nav-item
         = link_to 'アカウント作成', new_user_registration_path, class: 'nav-link'
+= render 'shared/do_tweet_modal'
