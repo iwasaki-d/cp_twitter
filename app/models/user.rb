@@ -37,4 +37,10 @@ class User < ActiveRecord::Base
     Tweet.order_latest.where(user_id: [self.id] << self.following.pluck(:following_user_id))
   end
 
+  def self.recommend(recommended_user)
+    # RANDOMはSQLLITE,POSTGRESQL依存。かつ、ほとんどのUSERのレコードが対象になりランダムに取得する重い処理なのでUsersの全レコード数に注意すること。今回はコピーサービスなのでそのまま
+    User.where('NOT EXISTS ( SELECT * FROM relationships a WHERE users.id = a.following_user_id AND a.user_id = ?) AND users.id <> ? ', recommended_user, recommended_user)
+      .order('RANDOM()').limit(Constants::RECOMMEND_USER_AMOUNT)
+  end
+
 end

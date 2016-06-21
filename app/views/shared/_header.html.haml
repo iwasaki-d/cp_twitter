@@ -12,7 +12,7 @@
       %li.nav-item
         = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
       %li.nav-item
-        = link_to 'ツィートする', new_user_tweet_path(@user), method: :get, class: 'nav-link btn btn-info btn-sm',
+        = link_to 'ツィートする', new_user_tweet_path(current_user), method: :get, class: 'nav-link btn btn-info btn-sm',
          style: 'color:white;'
 
     -else
