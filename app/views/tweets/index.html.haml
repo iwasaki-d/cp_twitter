@@ -8,7 +8,7 @@
             #{tweet.user.name}
           %div.card-block
             %div.card-text
-              #{tweet.body}
+              = simple_format h(tweet.body)
           %div.card-footer
             -if my_tweet? tweet
               =link_to '編集する', edit_user_tweet_path(@user, tweet), method: :get, class: 'btn btn-primary btn-sm'
