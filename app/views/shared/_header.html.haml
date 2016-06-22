@@ -14,9 +14,10 @@
       %li.nav-item
         = button_tag 'ツィートする', class: 'nav-link btn btn-info btn-sm',
           data: {toggle: "modal", target:"#doTweet"}, style:'color:white;'
-      = render 'shared/do_tweet_modal'
     -else
       %li.nav-item
         = link_to 'ログイン', new_user_session_path, class: 'nav-link'
       %li.nav-item
         = link_to 'アカウント作成', new_user_registration_path, class: 'nav-link'
+-if user_signed_in?
+  = render 'shared/do_tweet_modal'

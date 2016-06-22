@@ -15,3 +15,8 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+
+window.cpTwitter = {}
+window.cpTwitter.MAX_LENGTH_TWEET = 140;
+window.cpTwitter.WARINING_REMAINS_LENGTH_TWEET = 30;
+

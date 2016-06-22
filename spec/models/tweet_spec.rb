@@ -3,7 +3,10 @@ require 'rails_helper'
 RSpec.describe Tweet, type: :model do
   describe '#create' do
     context '正常系' do
-      before { @tweet = build(:tweet, body: "test_teet") }
+      before do
+        user = User.find_by(id: 1);
+        @tweet = build(:tweet, user: user, body: "test_wteet")
+      end
 
       it 'bodyの入力で保存出来ること' do
         expect(@tweet.save).to be_truthy
@@ -25,7 +28,7 @@ RSpec.describe Tweet, type: :model do
       before { @tweet = Tweet.new }
 
       it 'bodyの入力なしでは保存できないこと' do
-        @tweet.user = create(:user)
+        @tweet.user = User.find_by(id: 1);
         expect(@tweet).not_to be_valid
         expect(@tweet.errors[:body].first).to include ("can't be blank")
       end
@@ -38,14 +41,14 @@ RSpec.describe Tweet, type: :model do
 
       it '140文字制限を超える本文は保存できないこと' do
         @tweet.body = 'a'*141
-        @tweet.user = create(:user)
+        @tweet.user = User.find_by(id: 1);
         expect(@tweet).not_to be_valid
         expect(@tweet.errors[:body].first).to include ("too long")
       end
 
       it '日本語英語記号混在でも140文字制限を超える本文は保存できないこと' do
         @tweet.body = make_max_length_body + 'a'
-        @tweet.user = create(:user)
+        @tweet.user = User.find_by(id: 1);
         expect(@tweet).not_to be_valid
         expect(@tweet.errors[:body].first).to include ("too long")
       end
@@ -55,6 +58,7 @@ RSpec.describe Tweet, type: :model do
   end
 
   def make_max_length_body
-    'あア阿aA0.@*#' * 14
+    # 改行コードは2文字分
+    'あア阿aA0.@¥n' * 14
   end
 end
