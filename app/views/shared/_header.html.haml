@@ -1,5 +1,5 @@
 %nav.navbar.navbar-dark.bg-primary
-  = link_to 'ホーム:' + current_user.name, root_path, class: 'navbar-brand'
+  = link_to 'ホーム', root_path, class: 'navbar-brand'
   %ul.nav.navbar-nav.pull-xs-right
     -if user_signed_in?
       %li.nav-item
@@ -14,9 +14,9 @@
       %li.nav-item
         = button_tag 'ツィートする', class: 'nav-link btn btn-info btn-sm',
           data: {toggle: "modal", target:"#doTweet"}, style:'color:white;'
+      = render 'shared/do_tweet_modal'
     -else
       %li.nav-item
         = link_to 'ログイン', new_user_session_path, class: 'nav-link'
       %li.nav-item
         = link_to 'アカウント作成', new_user_registration_path, class: 'nav-link'
-= render 'shared/do_tweet_modal'
