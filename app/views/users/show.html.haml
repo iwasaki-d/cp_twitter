@@ -3,14 +3,6 @@
     =render 'shared/sidebar', user:@user
     %div.col-xs-8
       - @tweets.each do |tweet|
-        %div.card.card-tweet
-          %div.card-header
-            #{tweet.user.name}
-          %div.card-block
-            %div.card-text
-              = simple_format h(tweet.body)
-          %div.card-footer
-            -if my_tweet? tweet
-              =link_to '編集する', edit_user_tweet_path(@user, tweet), method: :get, class: 'btn btn-primary btn-sm'
-              =link_to '削除する', user_tweet_path(@user, tweet), method: :delete, class: 'btn btn-danger btn-sm'
+        =render 'shared/card_tweet', tweet: tweet, tweet_owner: @user
+      #show_tweet_area
     =render 'shared/right_sidebar'

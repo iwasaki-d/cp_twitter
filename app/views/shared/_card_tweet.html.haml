@@ -1,0 +1,15 @@
+-# ツィートをカード形式で表示する
+-# @note user_tweet_path()を実行しているので、show_tweet_modal.html.hamlがajaxで描画される
+-# #show_tweet_areaを同じhtmlで宣言すること
+-# @param :tweet [Tweet] 表示したいTweetモデル
+-# @param :tweet_owner [User] 表示したいTweetを行ったユーザー
+%div.card.card-tweet
+  %div.card-header
+    =link_to tweet.user.name, user_tweet_path(tweet_owner, tweet), method: :get, remote:true, data: { show_tweet: 'true' }
+  %div.card-block
+    %div.card-text
+    = simple_format h(tweet.body)
+  %div.card-footer
+    -if my_tweet? tweet
+      =link_to '編集する', edit_user_tweet_path(tweet_owner, tweet), method: :get, class: 'btn btn-primary btn-sm'
+      =link_to '削除する', user_tweet_path(tweet_owner, tweet), method: :delete, class: 'btn btn-danger btn-sm'
