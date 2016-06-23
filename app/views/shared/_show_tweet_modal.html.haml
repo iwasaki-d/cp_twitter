@@ -1,3 +1,7 @@
+-# ツィートの詳細をモーダルダイアログで表示する
+-# @note このモーダルはrenderによってhamlに記述されるのではなく、tweets_controller.showのremote:trueのajax呼び出しによって
+-#       #show_tweet_areaに書き出されることを想定している
+-# @param :show_tweet [Tweet] 詳細を表示したいTweetモデル
 #show_tweet.modal.fade{tabindex: -1, role: 'dialog', aria: {labelledby: 'showTweetLabel', hidden: 'true'}}
   .modal-dialog{role: 'document'}
     .modal-content

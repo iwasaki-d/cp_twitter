@@ -1,3 +1,6 @@
+-# ログインユーザーと異なるユーザーをフォロ−/アンフォローするボタンを表示する
+-# @note ログイン状態で利用すること
+-# @param :following_user [User] フォローしたいユーザー
 - unless current_user? following_user
 - relationship = current_user.following_relationships.find_or_initialize_by(following_user_id: following_user)
   -if relationship.new_record?

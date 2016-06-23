@@ -1,3 +1,5 @@
+-# レイアウト右側 おすすめユーザー表示
+-# @note ログイン状態で利用すること
 %div#left-sidebar.col-xs-2
   %h3.font-size-mid みんなをフォローしよう！
   - User.recommend(current_user).each do |recommend_user|
