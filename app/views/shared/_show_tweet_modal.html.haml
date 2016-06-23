@@ -6,8 +6,11 @@
   .modal-dialog{role: 'document'}
     .modal-content
       .modal-header
-        %button.close{aria: {hidden: 'true'}, data: {dismiss: 'modal'}, type: 'button'} ×
-        %h3 #{show_tweet.user.name}
+        %button.close{aria: {hidden: 'true'}, data: {dismiss: 'modal'}, type: 'button', style: 'margin-left:0.5rem;'} ×
+        .pull-xs-left
+          %p{style:'font-size:2rem;'} #{show_tweet.user.name}
+        .pull-xs-right
+          = render 'shared/follow_button', following_user: show_tweet.user
       .model-body
         .card.card-block{style: 'border-width:0'}
           = simple_format h(show_tweet.body)
