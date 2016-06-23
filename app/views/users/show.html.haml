@@ -3,6 +3,6 @@
     =render 'shared/sidebar', user:@user
     %div.col-xs-8
       - @tweets.each do |tweet|
-        =render 'shared/card_tweet', tweet: tweet, tweet_owner: @user
+        =render 'shared/card_tweet', tweet: tweet
       #show_tweet_area
     =render 'shared/right_sidebar'
