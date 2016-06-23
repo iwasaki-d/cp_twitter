@@ -1,4 +1,5 @@
 $ ->
   $('.card-tweet .card-header').on('click', ->
-    $('a[data-show-tweet]', this)[0].click()
+    $tweetLink = $('a[data-show-tweet]', this)[0]
+    $tweetLink.click() if $tweetLink?
   )

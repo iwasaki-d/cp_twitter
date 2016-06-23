@@ -14,6 +14,7 @@ gem 'devise'
 gem 'simple_form'
 gem 'ransack'
 gem 'kaminari'
+gem 'jquery-turbolinks'
 
 gem 'bootstrap', '~> 4.0.0.alpha3'
 
