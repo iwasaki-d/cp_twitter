@@ -4,6 +4,9 @@ class TweetsController < ApplicationController
   before_action :authenticate_current_user, only: [:edit, :update, :destroy]
 
   def show
+    respond_to do |format|
+      format.js
+    end
   end
 
   def new

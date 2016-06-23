@@ -5,7 +5,7 @@
       - @user.tweets.order_latest.each do |tweet|
         %div.card.card-tweet
           %div.card-header
-            #{tweet.user.name}
+            =link_to tweet.user.name, user_tweet_path(@user, tweet), method: :get, remote:true, data: { show_tweet: 'true' }
           %div.card-block
             %div.card-text
               = simple_format h(tweet.body)
@@ -14,3 +14,4 @@
               =link_to '編集する', edit_user_tweet_path(@user, tweet), method: :get, class: 'btn btn-primary btn-sm'
               =link_to '削除する', user_tweet_path(@user, tweet), method: :delete, class: 'btn btn-danger btn-sm'
     =render 'shared/right_sidebar'
+#show_tweet_area

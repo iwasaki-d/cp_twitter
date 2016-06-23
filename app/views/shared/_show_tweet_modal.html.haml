@@ -1,0 +1,9 @@
+#show_tweet.modal.fade{tabindex: -1, role: 'dialog', aria: {labelledby: 'showTweetLabel', hidden: 'true'}}
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-header
+        %button.close{aria: {hidden: 'true'}, data: {dismiss: 'modal'}, type: 'button'} ×
+        %h3 #{show_tweet.user.name}
+      .model-body
+        .card.card-block{style: 'border-width:0'}
+          = simple_format h(show_tweet.body)

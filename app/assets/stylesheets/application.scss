@@ -20,6 +20,14 @@
 .card-tweet {
   margin-bottom: 0 !important;
 
+  .card-header {
+    background-color: white;
+
+    &:hover {
+      background-color: gainsboro;
+    }
+  }
+
   .card-footer {
     background-color: white;
     border-color: white;
