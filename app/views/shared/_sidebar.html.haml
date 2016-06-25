@@ -1,21 +1,21 @@
 -# レイアウト左 ログインユーザー情報
 -# @param :user [User] 情報表示対象ユーザー
-%div#user-sidebar.col-xs-2
-  %div.card
-    %div#user-profile.card-block
-      %div.card-title
+#user-sidebar.col-xs-2
+  .card
+    #user-profile.card-block
+      .card-title
         %h1 #{user.name}'s page
-      %div.card-text
-        =link_to 'ツイート', user_tweets_path(user)
+      .card-text
         %div
-          %stroing
+          =link_to 'ツイート', user_tweets_path(user)
+          %strong
             =link_to user.tweets_count, user_tweets_path(user)
-        =link_to 'フォロー', following_user_path(user)
         %div
-          %stroing
+          =link_to 'フォロー', following_user_path(user)
+          %strong
             =link_to user.following_count, following_user_path(user)
-        =link_to  'フォロワー', followers_user_path(user)
         %div
+          =link_to  'フォロワー', followers_user_path(user)
           %strong
             =link_to user.followers_count, followers_user_path(user)
-          =render 'shared/follow_button', following_user: user
+    =render 'shared/follow_button', following_user: user
