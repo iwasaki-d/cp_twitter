@@ -8,7 +8,13 @@ Rails.application.routes.draw do
       get :followers
       get :search, controller: :searches
     end
-    resources :tweets, format: false
+    resources :tweets, format: false do
+      resource :likes, only: [:create, :destroy], format: false do
+        collection do
+          get :users_list
+        end
+      end
+    end
     resource :relationships, only: [:create, :destroy], format: false
   end
 

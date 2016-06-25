@@ -5,8 +5,6 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
 
-  has_many :tweets, dependent: :destroy
-
   has_many :following_relationships, class_name: 'Relationship', foreign_key: 'user_id' , dependent: :destroy
   has_many :following, through: :following_relationships, source: :following_relationship
 
@@ -14,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :follower_relationships, class_name: 'Relationship', foreign_key: 'following_user_id'
   has_many :followers, through: :follower_relationships, source: :follower_relationship
 
+  has_many :likes
+  has_many :tweets, dependent: :destroy
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup

@@ -1,4 +1,8 @@
 FactoryGirl.define do
+  factory :like do
+    user_id ""
+    tweet_id 1
+  end
 
   factory :user do
     sequence(:id)
