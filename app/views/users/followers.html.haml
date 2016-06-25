@@ -1,13 +1,13 @@
-%div.container-fluid
-  %div.row.m-t-1
+.container-fluid
+  .row.m-t-1
     =render 'shared/sidebar', user:@user
-    %div.col-xs-8
+    .col-xs-8
       - @user.followers.each do |follower|
-        %div.card
-          %div.card-header
+        .card
+          .card-header
             =link_to follower.name, user_path(follower)
-            %div.pull-xs-right
+            .pull-xs-right
               = render 'shared/follow_button', following_user: follower
-          %div.card-block
-            %div.card-text
+          .card-block
+            .card-text
     =render 'shared/right_sidebar'

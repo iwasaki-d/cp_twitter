@@ -6,7 +6,7 @@
   .card-header
     =link_to tweet.user.name, user_tweet_path(tweet.user, tweet), method: :get, remote:true, data: { show_tweet: 'true' }
   .card-block
-    %div.card-text
+    .card-text
     = simple_format h(tweet.body)
   .card-footer
     .card-like-area

@@ -1,19 +1,19 @@
-%div.container-fluid
-  %div.row.m-t-1
-    %div.col-xs-2
-    %div.col-xs-8
+.container-fluid
+  .row.m-t-1
+    .col-xs-2
+    .col-xs-8
       %h2 アカウント
       -if @users.count > 0
-        %div.card-deck-wrapper
-          %div.card-deck
+        .card-deck-wrapper
+          .card-deck
             -@users.each do |user|
-              %div.card
-                %div.card-header
+              .card
+                .card-header
                   =link_to user.name, user_path(user)
-                %div.card-block.card-user
-                  %div.card-text
+                .card-block.card-user
+                  .card-text
                     (ユーザー紹介文)
-                %div.card-footer
+                .card-footer
         =paginate @users, param_name: 'users_page'
       -else
         %h3.m-t-1 検索項目に合致するアカウントがありませんでした。
@@ -21,13 +21,13 @@
         %h2.m-t-1 ツイート
         -if @tweets.count > 0
           -@tweets.order_latest.each do |tweet|
-            %div.card.card-tweet
-              %div.card-header
+            .card.card-tweet
+              .card-header
                 =link_to tweet.user.name, user_path(tweet.user.id)
-              %div.card-block
-                %div.card-text
+              .card-block
+                .card-text
                   #{tweet.body}
-              %div.card-footer
+              .card-footer
           =paginate @tweets, param_name: 'tweets_page'
         -else
           %h3.m-t-1 検索項目に合致するツイートがありませんでした。

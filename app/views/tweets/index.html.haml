@@ -1,7 +1,7 @@
-%div.container-fluid
-  %div.row.m-t-1
+.container-fluid
+  .row.m-t-1
     =render 'shared/sidebar', user:@user
-    %div.col-xs-8
+    .col-xs-8
       - @user.tweets.order_latest.each do |tweet|
         =render 'shared/card_tweet', tweet: tweet
       #show_tweet_area

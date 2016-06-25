@@ -1,5 +1,5 @@
 %h2 アカウント作成
-%div.col-xs-4
+.col-xs-4
   = simple_form_for(@user, url: registration_path(@user)) do |f|
     = devise_error_messages!
     = f.input :name, label: 'アカウント名称', autofocus: true

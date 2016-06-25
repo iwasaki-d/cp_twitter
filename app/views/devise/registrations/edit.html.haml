@@ -1,6 +1,6 @@
 %h2
   アカウント編集 #{resource_name.to_s.humanize}
-%div.col-xs-4
+.col-xs-4
   = simple_form_for(@user, url: registration_path(@user)) do |f|
     = devise_error_messages!
     = f.input :name, label: 'アカウント名称', autofocus: true
