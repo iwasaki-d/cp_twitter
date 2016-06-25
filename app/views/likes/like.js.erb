@@ -1,1 +1,1 @@
-$("#card_<%= @tweet.id %> .card-like-area").html("<%= j(render 'shared/card_like', tweet: @tweet) %>");
+$("[data-card-id='<%= @tweet.id %>'] .card-like-area").html("<%= j(render 'shared/card_like', tweet: @tweet) %>");

@@ -12,5 +12,9 @@
         .pull-xs-right
           = render 'shared/follow_button', following_user: show_tweet.user
       .model-body
-        .card.card-block{style: 'border-width:0'}
-          = simple_format h(show_tweet.body)
+        .card.card-tweet{data: {card_id: show_tweet.id}}
+          .card-block{style: 'border-width:0'}
+            = simple_format h(show_tweet.body)
+          .card-footer
+            .card-like-area
+              = render 'shared/card_like', tweet: show_tweet
