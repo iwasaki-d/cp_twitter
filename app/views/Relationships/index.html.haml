@@ -1,22 +1,22 @@
-%div.container-fluid
-  %div.row
-    %div#user-sidebar.col-xs-4
-      %div#user-profile.card
-        %div.card-block
-          %div.card-title
+.container-fluid
+  .row
+    #user-sidebar.col-xs-4
+      #user-profile.card
+        .card-block
+          .card-title
             %h1 #{@user.name}'s page
-          %div.card-text
+          .card-text
             フォロー
             %p
               #{@user.following_count}
             フォロワー
             %p
               #{@user.followers_count}
-    %div.col-xs-8
+    .col-xs-8
       - @user.following.each do |following|
-        %div.card
-          %div.card-header
+        .card
+          .card-header
             #{following.name}
-          %div.card-block
-            %div.card-text
+          .card-block
+            .card-text
               #{following.name}
