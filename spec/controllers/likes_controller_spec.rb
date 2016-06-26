@@ -39,7 +39,7 @@ RSpec.describe LikesController, type: :controller do
   describe "GET #index" do
     it "assigns all likes as @likes" do
       like = Like.create! valid_attributes
-      get :index, {}, valid_session
+      get :comments_index, {}, valid_session
       expect(assigns(:likes)).to eq([like])
     end
   end

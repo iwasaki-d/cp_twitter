@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 20160625071013) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "likes", ["tweet_id", "user_id"], name: "index_likes_on_unique", unique: true
   add_index "likes", ["tweet_id"], name: "index_likes_on_tweet_id"
+  add_index "likes", ["user_id", "tweet_id"], name: "index_likes_on_unique", unique: true
   add_index "likes", ["user_id"], name: "index_likes_on_user_id"
 
   create_table "relationships", force: :cascade do |t|
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20160625071013) do
   end
 
   add_index "relationships", ["following_user_id"], name: "index_relationships_on_following_user_id"
-  add_index "relationships", ["user_id", "following_user_id"], name: "index_relationships_unique", unique: true
+  add_index "relationships", ["user_id", "following_user_id"], name: "index_following_unique", unique: true
 
   create_table "tweets", force: :cascade do |t|
     t.string   "body"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20160625071013) do
     t.integer  "parent_tweet_id"
   end
 
+  add_index "tweets", ["parent_tweet_id"], name: "index_tweets_on_parent_tweet_id"
   add_index "tweets", ["user_id"], name: "index_tweets_on_user_id"
 
   create_table "users", force: :cascade do |t|

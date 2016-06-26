@@ -15,5 +15,5 @@
              placeholder: '今どうしている？', maxlength: Constants::MAX_LENGTH_TWEET
             .form-group.form-inline{style: 'height:1rem;'}
               #tweet_body_length.pull-xs-left
-                = Constants::MAX_LENGTH_TWEET
+                = initialize_remains_body_characters('')
               = f.button :submit, class: 'form-control pull-xs-right', data: {disable_with: 'ツィート処理中...'}

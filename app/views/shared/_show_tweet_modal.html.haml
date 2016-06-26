@@ -5,16 +5,24 @@
 #show_tweet.modal.fade{tabindex: -1, role: 'dialog', aria: {labelledby: 'showTweetLabel', hidden: 'true'}}
   .modal-dialog{role: 'document'}
     .modal-content
+      - tweet_owner = show_tweet.user
       .modal-header
         %button.close{aria: {hidden: 'true'}, data: {dismiss: 'modal'}, type: 'button', style: 'margin-left:0.5rem;'} ×
-        .pull-xs-left
-          %p{style:'font-size:2rem;'} #{show_tweet.user.name}
         .pull-xs-right
-          = render 'shared/follow_button', following_user: show_tweet.user
+          = render 'shared/follow_button', following_user: tweet_owner
       .model-body
-        .card.card-tweet{data: {card_id: show_tweet.id}}
-          .card-block{style: 'border-width:0'}
-            = simple_format h(show_tweet.body)
-          .card-footer
-            .card-like-area
-              = render 'shared/card_like', tweet: show_tweet
+        .card-show-tweet
+          = render 'shared/card_tweet', tweet: show_tweet
+        .card.card-block.card-comment
+          - comment = build_comment(current_user, show_tweet)
+          = simple_form_for(comment, url: user_tweet_comments_path(tweet_owner, show_tweet), remote:true) do |f|
+            = f.error_notification
+            = f.input :body, as: :text, label: false, class:'textarea', :input_html => {rows: 3, id:'comment_body'},
+             autofocus: true, maxlength: Constants::MAX_LENGTH_TWEET
+            .form-group.form-inline{style: 'height:1rem;'}
+              #comment_body_length.pull-xs-left
+                = initialize_remains_body_characters(comment.body)
+              = f.button :submit, "@#{tweet_owner.name}さんへコメントする", class: 'form-control pull-xs-right', data: {disable_with: 'コメント処理中...'}
+        = button_to 'コメントを表示する', user_tweet_comments_path(user_id: tweet_owner, tweet_id: show_tweet), method: :get,
+         id:'show_tweet_show_comment',remote: true, style: 'display:none;'
+        .card-comments#show_comments_area

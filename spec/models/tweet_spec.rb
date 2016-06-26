@@ -22,6 +22,11 @@ RSpec.describe Tweet, type: :model do
         expect(@tweet.save).to be_truthy
       end
 
+      it 'tweetについたコメントを取得する' do
+        tweet = User.find_by(id: 1).tweets.first
+        expect(tweet.comments.length).to eq(2)
+      end
+
     end
 
     context '異常系' do
