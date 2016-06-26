@@ -5,7 +5,7 @@ class Tweet < ActiveRecord::Base
   belongs_to :user, counter_cache:  'tweets_count'
   has_many :likes, dependent: :destroy
 
-  scope :order_latest, -> { order('created_at desc') }
+  scope :order_latest, -> { order('tweets.created_at desc') }
 
   has_many :like_users, through: :likes, source: :user
 

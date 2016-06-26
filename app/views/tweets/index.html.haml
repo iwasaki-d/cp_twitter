@@ -3,7 +3,8 @@
     = render 'shared/sidebar', user: @user
     .col-xs-8
       %h2 #{@user.name}さんがしたツィート一覧
-      - @user.tweets.order_latest.each do |tweet|
+      = paginate @tweets, param_name: 'tweets_page'
+      - @tweets.each do |tweet|
         = render 'shared/card_tweet', tweet: tweet
         - if tweet.comments.size > 0
           .card.card-block.comments_notification

@@ -3,6 +3,10 @@ class TweetsController < ApplicationController
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_current_user, only: [:edit, :update, :destroy]
 
+  def index
+    @tweets = @user.tweets.order_latest.page(params[:tweets_page]).per(Constants::DEFAULT_TWEETS_PAR)
+  end
+
   def show
     respond_to do |format|
       format.js

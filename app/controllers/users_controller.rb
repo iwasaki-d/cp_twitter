@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :authenticate_current_user, only:[:show]
 
   def show
-    @tweets = current_user.timeline
+    @tweets = current_user.timeline(params[:tweets_page])
   end
 
   private
