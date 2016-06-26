@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user
-  before_action :authenticate_current_user
+  before_action :authenticate_current_user, only:[:show]
 
   def show
     @tweets = current_user.timeline
