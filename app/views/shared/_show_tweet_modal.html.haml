@@ -17,7 +17,7 @@
           - comment = build_comment(current_user, show_tweet)
           = simple_form_for(comment, url: user_tweet_comments_path(tweet_owner, show_tweet), remote:true) do |f|
             = f.error_notification
-            = f.input :body, as: :text, label: false, class:'textarea', :input_html => {rows: 3, id:'comment_body'},
+            = f.input :body, as: :text, label: false, class:'textarea', input_html: {rows: 3, id:'comment_body'},
              autofocus: true, maxlength: Constants::MAX_LENGTH_TWEET
             .form-group.form-inline{style: 'height:1rem;'}
               #comment_body_length.pull-xs-left

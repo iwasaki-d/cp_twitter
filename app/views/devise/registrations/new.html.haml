@@ -3,7 +3,7 @@
   = simple_form_for(@user, url: registration_path(@user)) do |f|
     = devise_error_messages!
     = f.input :name, label: 'アカウント名称', autofocus: true
-    = f.input :password, label: 'パスワード', autocomplete: "off"
-    = f.input :password_confirmation, label: 'パスワード確認',autocomplete: "off"
-    = f.button :submit, 'アカウント作成', class: "btn btn-primary"
-  = render "devise/shared/links"
+    = f.input :password, label: 'パスワード', autocomplete: 'off'
+    = f.input :password_confirmation, label: 'パスワード確認',autocomplete: 'off'
+    = f.button :submit, 'アカウント作成', class: 'btn btn-primary'
+  = render 'devise/shared/links'

@@ -7,15 +7,15 @@
         %h1 #{user.name}'s page
       .card-text
         %div
-          =link_to 'ツイート', user_tweets_path(user)
+          = link_to 'ツイート', user_tweets_path(user)
           %strong
-            =link_to user.tweets_count, user_tweets_path(user)
+            = link_to user.tweets_count, user_tweets_path(user)
         %div
-          =link_to 'フォロー', following_user_path(user)
+          = link_to 'フォロー', following_user_path(user)
           %strong
-            =link_to user.following_count, following_user_path(user)
+            = link_to user.following_count, following_user_path(user)
         %div
-          =link_to  'フォロワー', followers_user_path(user)
+          = link_to  'フォロワー', followers_user_path(user)
           %strong
-            =link_to user.followers_count, followers_user_path(user)
-    =render 'shared/follow_button', following_user: user
+            = link_to user.followers_count, followers_user_path(user)
+    = render 'shared/follow_button', following_user: user

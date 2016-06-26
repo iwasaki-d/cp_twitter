@@ -4,13 +4,13 @@
     .col-xs-8
       %h2 いいね！してくれたアカウント
       .card-deck-wrapper
-        -@users.each do |user|
+        - @users.each do |user|
           .card
             .card-header
-              =link_to user.name, user_path(user)
+              = link_to user.name, user_path(user)
             .card-block.card-user
               .card-text
                 (ユーザー紹介文)
             .card-footer
-      =paginate @users, param_name: 'users_page'
-    =render 'shared/right_sidebar'
+      = paginate @users, param_name: 'users_page'
+    = render 'shared/right_sidebar'

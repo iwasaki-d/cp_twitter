@@ -3,9 +3,9 @@
 -# @param :following_user [User] フォローしたいユーザー
 - unless current_user? following_user
 - relationship = current_user.following_relationships.find_or_initialize_by(following_user_id: following_user)
-  -if relationship.new_record?
+  - if relationship.new_record?
     = simple_form_for(relationship, url: user_relationships_path(following_user), class: 'form-inline') do |f|
-      = f.button :submit, 'フォローする', class: "btn btn-primary btn-sm", data: {disable_with: "フォロー処理中..."}
-  -else
+      = f.button :submit, 'フォローする', class: 'btn btn-primary btn-sm', data: {disable_with: 'フォロー処理中...'}
+  - else
     = simple_form_for(relationship, url: user_relationships_path(following_user), class: 'form-inline', method: 'delete') do |f|
-      = f.button :submit, 'フォロー解除', class: "btn btn-danger btn-sm", data: {disable_with: "フォロー解除中..."}
+      = f.button :submit, 'フォロー解除', class: 'btn btn-danger btn-sm', data: {disable_with: 'フォロー解除中...'}

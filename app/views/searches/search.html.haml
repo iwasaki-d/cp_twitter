@@ -3,31 +3,31 @@
     .col-xs-2
     .col-xs-8
       %h2 アカウント
-      -if @users.count > 0
+      - if @users.count > 0
         .card-deck-wrapper
           .card-deck
-            -@users.each do |user|
+            - @users.each do |user|
               .card
                 .card-header
-                  =link_to user.name, user_path(user)
+                  = link_to user.name, user_path(user)
                 .card-block.card-user
                   .card-text
                     (ユーザー紹介文)
                 .card-footer
-        =paginate @users, param_name: 'users_page'
-      -else
+        = paginate @users, param_name: 'users_page'
+      - else
         %h3.m-t-1 検索項目に合致するアカウントがありませんでした。
       %div
         %h2.m-t-1 ツイート
-        -if @tweets.count > 0
-          -@tweets.order_latest.each do |tweet|
+        - if @tweets.count > 0
+          - @tweets.order_latest.each do |tweet|
             .card.card-tweet
               .card-header
-                =link_to tweet.user.name, user_path(tweet.user.id)
+                = link_to tweet.user.name, user_path(tweet.user.id)
               .card-block
                 .card-text
                   #{tweet.body}
               .card-footer
-          =paginate @tweets, param_name: 'tweets_page'
-        -else
+          = paginate @tweets, param_name: 'tweets_page'
+        - else
           %h3.m-t-1 検索項目に合致するツイートがありませんでした。
