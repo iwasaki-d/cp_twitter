@@ -15,6 +15,7 @@ gem 'simple_form'
 gem 'ransack'
 gem 'kaminari'
 gem 'jquery-turbolinks'
+gem 'quiet_assets'
 
 gem 'bootstrap', '~> 4.0.0.alpha3'
 source 'https://rails-assets.org' do
@@ -34,7 +35,6 @@ group :development do
   gem 'spring'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'quiet_assets'
 end
 
 group :production do
