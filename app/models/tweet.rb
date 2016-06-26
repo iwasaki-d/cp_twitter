@@ -9,7 +9,7 @@ class Tweet < ActiveRecord::Base
 
   has_many :like_users, through: :likes, source: :user
 
-  belongs_to :parent, class_name: 'Tweet', foreign_key: 'parent_tweet_id'
+  belongs_to :parent, class_name: 'Tweet', foreign_key: 'parent_tweet_id', counter_cache: 'comments_count'
   has_many :comments, class_name: 'Tweet', foreign_key: 'parent_tweet_id'
 
 end
