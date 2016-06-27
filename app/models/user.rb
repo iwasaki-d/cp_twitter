@@ -34,8 +34,11 @@ class User < ActiveRecord::Base
   end
 
   def timeline(load_page)
-    Tweet.where('tweets.user_id = ? OR EXISTS ( SELECT * FROM relationships a WHERE tweets.user_id = a.following_user_id AND a.user_id = ? )' +
-      ' OR EXISTS ( SELECT * FROM likes b WHERE tweets.id = b.tweet_id AND b.user_id = ? )', self.id, self.id, self.id)
+    Tweet.where(
+      'tweets.user_id = ? '+
+      ' OR EXISTS ( SELECT * FROM relationships a WHERE tweets.user_id = a.following_user_id AND a.user_id = ? )' +
+      ' OR EXISTS ( SELECT * FROM likes b WHERE tweets.id = b.tweet_id AND b.user_id = ? )',
+      self.id, self.id, self.id)
     .eager_load(:user).order_latest.page(load_page).per(Constants::DEFAULT_TWEETS_PAR)
   end
 
