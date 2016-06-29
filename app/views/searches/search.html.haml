@@ -7,14 +7,7 @@
         .card-deck-wrapper
           .card-deck
             - @users.each do |user|
-              .card
-                .card-header
-                  = default_user_image(user)
-                  = link_to user.name, user_path(user)
-                .card-block.card-user
-                  .card-text
-                    = simple_format h(user.profile)
-                .card-footer
+              = render 'shared/card_user', user: user
         = paginate @users, param_name: 'users_page'
       - else
         %h3.m-t-1 検索項目に合致するアカウントがありませんでした。

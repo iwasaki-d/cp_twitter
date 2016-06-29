@@ -1,0 +1,12 @@
+-# ユーザーをカード形式で表示する
+-# @param :user [User] 表示したいユーザー
+.card
+  .card-header
+    = default_user_image(user)
+    = link_to user.name, user_path(user)
+    .pull-xs-right
+      = render 'shared/follow_button', following_user: user
+  .card-block.card-user
+    .card-text
+      = simple_format h(user.profile)
+  .card-footer

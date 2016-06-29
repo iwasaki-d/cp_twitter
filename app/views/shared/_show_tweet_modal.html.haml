@@ -12,7 +12,7 @@
           = render 'shared/follow_button', following_user: tweet_owner
       .model-body
         .card-show-tweet
-          = render 'shared/card_tweet', tweet: show_tweet
+          = render 'shared/card_tweet', tweet: show_tweet, open_dialog: false
         .card.card-block.card-comment
           - comment = build_comment(current_user, show_tweet)
           = simple_form_for(comment, url: user_tweet_comments_path(tweet_owner, show_tweet), remote:true) do |f|

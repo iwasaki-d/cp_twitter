@@ -3,14 +3,6 @@
     = render 'shared/sidebar', user:@user
     .col-xs-8
       - @user.following.each do |following|
-        .card
-          .card-header
-            = default_user_image(following)
-            = link_to following.name, user_path(following)
-            .pull-xs-right
-              = render 'shared/follow_button', following_user: following
-          .card-block
-            .card-text
-              = simple_format h(following.profile)
+        = render 'shared/card_user', user: following
     = render 'shared/right_sidebar'
 

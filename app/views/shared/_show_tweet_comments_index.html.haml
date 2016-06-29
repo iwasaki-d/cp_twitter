@@ -2,5 +2,5 @@
 -# @note comments/index.js.erbにてajax表示される
 -# @param :tweet [Tweet] コメントを表示させたいTweetモデル
 - @comments.each do |comment|
-  = render 'shared/card_tweet', tweet: comment
+  = render 'shared/card_tweet', tweet: comment, open_dialog: false
 = paginate @comments, params: {controller: 'comments', action: 'index'},  param_name: 'comments_page', remote: true
