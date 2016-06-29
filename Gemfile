@@ -22,6 +22,9 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
 
+gem 'carrierwave'
+gem 'rmagick'
+
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug'

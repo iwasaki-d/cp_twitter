@@ -9,10 +9,11 @@
             - @users.each do |user|
               .card
                 .card-header
+                  = default_user_image(user)
                   = link_to user.name, user_path(user)
                 .card-block.card-user
                   .card-text
-                    (ユーザー紹介文)
+                    = simple_format h(user.profile)
                 .card-footer
         = paginate @users, param_name: 'users_page'
       - else
@@ -23,6 +24,7 @@
           - @tweets.order_latest.each do |tweet|
             .card.card-tweet
               .card-header
+                = default_user_image(tweet.user)
                 = link_to tweet.user.name, user_path(tweet.user.id)
               .card-block
                 .card-text

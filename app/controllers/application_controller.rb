@@ -13,11 +13,11 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :image, :image_cache, :profile])
   end
 
   def configure_ransack_parameters
     @q = Tweet.ransack
   end
-
 
 end

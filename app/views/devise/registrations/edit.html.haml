@@ -1,15 +1,29 @@
-%h2
-  アカウント編集 #{resource_name.to_s.humanize}
-.col-xs-4
-  = simple_form_for(@user, url: registration_path(@user)) do |f|
-    = devise_error_messages!
-    = f.input :name, label: 'アカウント名称', autofocus: true
-    = f.input :password, autocomplete: 'off', hint: '(パスワードを変更しない場合は空白のままにしてください)'
-    = f.input :password_confirmation, autocomplete: 'off'
-    %br/
-    = f.input :current_password, autocomplete: 'off',hint: '(アカウント変更時には現在のパスワードを入力してください)'
-    = f.button :submit, 'アカウント更新', class: 'btn btn-primary'
-  %br/
-  %h3 アカウント削除
-  %p
-    = button_to 'アカウント削除', registration_path(@user), data: { confirm: 'アカウントの削除を行いますか?' }, method: :delete, class: 'btn btn-danger'
+.container-fluid
+  .row.m-t-1
+    .col-xs-4
+      %h2.m-t-1
+        アカウント編集
+        = default_user_image(current_user)
+      = simple_form_for(current_user, url: registration_path(current_user)) do |f|
+        = devise_error_messages!
+        = f.input :name, label: 'アカウント名称', autofocus: true
+        = f.input :password, autocomplete: 'off', hint: '(パスワードを変更しない場合は空白のままにしてください)'
+        = f.input :password_confirmation, autocomplete: 'off'
+        -# 'プロフィールのアップロードはsimple_formの記法(as: :file)ではファイル選択ボタンが表示されないため、通常のformの記法を使う'
+        = f.label 'プロフィール画像', class: 'form-control-label'
+        - if current_user.image?
+          = image_tag current_user.image.thumb.url
+        = f.file_field :image, class: 'form-control-file'
+        = f.hidden_field :image_cache
+        = f.input :profile, label: 'プロフィール詳細' , as: :text, autocomplete: 'off', class: 'textarea', input_html: {rows: 5},
+         maxlength: Constants::MAX_LENGTH_TWEET
+        .form-group.form-inline{style: 'height:1rem;'}
+          #user_profile_length.pull-xs-left
+            = initialize_remains_body_characters(current_user.profile)
+        %br/
+        = f.input :current_password, autocomplete: 'off', hint: '(アカウント変更時には現在のパスワードを入力してください)'
+        = f.button :submit, 'アカウント更新', class: 'btn btn-primary'
+      %br/
+      %h3 アカウント削除
+      %p
+        = button_to 'アカウント削除', registration_path(current_user), data: { confirm: 'アカウントの削除を行いますか?' }, method: :delete, class: 'btn btn-danger'

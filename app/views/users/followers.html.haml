@@ -5,9 +5,11 @@
       - @user.followers.each do |follower|
         .card
           .card-header
+            = default_user_image(follower)
             = link_to follower.name, user_path(follower)
             .pull-xs-right
               = render 'shared/follow_button', following_user: follower
           .card-block
             .card-text
+              = simple_format h(follower.profile)
     = render 'shared/right_sidebar'

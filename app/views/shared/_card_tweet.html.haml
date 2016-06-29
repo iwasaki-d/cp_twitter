@@ -4,6 +4,7 @@
 -# @param :tweet [Tweet] 表示したいTweetモデル
 .card.card-tweet{data: {card_id: tweet.id}}
   .card-header
+    = default_user_image(tweet.user)
     = link_to tweet.user.name, user_tweet_path(tweet.user, tweet), method: :get, remote:true, data: { show_tweet: 'true', disable_with: '詳細表示中...' }
   .card-block
     .card-text

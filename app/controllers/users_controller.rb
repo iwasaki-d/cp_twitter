@@ -17,5 +17,4 @@ class UsersController < ApplicationController
       redirect_to user_tweets_url(user_id: @user)
     end
   end
-
 end
