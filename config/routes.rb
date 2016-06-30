@@ -19,5 +19,7 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destroy], format: false
   end
 
+  match '/cable', :to => ActionCable.server, via: [:get, :post]
+
   root to: 'home#index'
 end

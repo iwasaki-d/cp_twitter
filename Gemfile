@@ -24,6 +24,9 @@ end
 
 gem 'carrierwave'
 gem 'rmagick'
+gem 'puma'
+gem 'actioncable', github: 'rails/actioncable', branch: 'archive'
+
 
 group :development, :test do
   gem 'sqlite3'
