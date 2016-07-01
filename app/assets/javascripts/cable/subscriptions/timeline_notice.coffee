@@ -1,10 +1,10 @@
-App.notice = App.cable.subscriptions.create "NoticeChannel",
+App.user_notice = App.cable.subscriptions.create "UserNoticeChannel",
   connected: ->
 
   disconnected: ->
 
   received: (data) ->
-    alert ''
+    $('#user_notice').html data['notice_html']
 
-  send_notice: (notice) ->
-    @perform 'send_notice', notice: notice
+  send_notice: (data) ->
+    @perform 'send_notice', notice: data
