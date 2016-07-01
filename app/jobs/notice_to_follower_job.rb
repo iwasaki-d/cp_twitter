@@ -10,6 +10,6 @@ class NoticeToFollowerJob < ActiveJob::Base
   private
 
   def build_html(follower)
-    " <p> #{follower.name}さんのタイムラインが更新されました。</p> "
+    " <p class=\"alert alert-info\"> #{follower.name}さんのタイムラインが更新されました。</p> "
   end
 end
