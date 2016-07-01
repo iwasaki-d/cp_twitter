@@ -5,6 +5,7 @@ class UserNoticeChannel < ApplicationCable::Channel
   end
 
   def send_notice(data)
-    ActionCable.server.broadcast 'user_notice_channel', notice_html: " <p> #{data['notice']}さんのタイムラインが更新されました。</p> "
+    sanitized_notice = ERB::Util.html_escape(data['notice'])
+    ActionCable.server.broadcast 'user_notice_channel', notice_html: " <p> #{sanitized_notice}さんのタイムラインが更新されました。</p> "
   end
 end
