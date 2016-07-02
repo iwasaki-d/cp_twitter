@@ -1,5 +1,6 @@
 class NoticeToFollowerJob < ActiveJob::Base
   queue_as :default
+  include Rails.application.routes.url_helpers
 
   def perform(tweet)
     tweet.user.followers.each do |follower|
@@ -10,6 +11,10 @@ class NoticeToFollowerJob < ActiveJob::Base
   private
 
   def build_html(follower)
-    " <p class=\"alert alert-info\"> #{follower.name}さんのタイムラインが更新されました。</p> "
+    #コントローラー外からrenderを呼び出す為
+    lookup_context = ActionView::LookupContext.new('./app/views')
+    view_context = ActionView::Base.new(lookup_context)
+    view_context.assign(user: follower)
+    view_context.render('shared/user_notice')
   end
 end

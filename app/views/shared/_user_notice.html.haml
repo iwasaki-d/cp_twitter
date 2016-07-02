@@ -1,0 +1,7 @@
+-# あるユーザーがツィートした時にフォロワーに表示される通知表示
+-# @note notice_to_follower_job.rbから特殊な方法を使ってrenderから呼び出される。
+-#       その為、url_helperを直接呼び出すことができない。
+-#       また。@userがnotice_to_follower_job.rbから定義されたuserモデル
+%p
+  .alert.alert-info
+    = link_to "#{@user.name}さんのタイムラインが更新されました。", Rails.application.routes.url_helpers.user_path(@user)
