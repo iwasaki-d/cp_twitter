@@ -2,7 +2,7 @@
 -# @note ログイン状態で利用すること
 %div#left-sidebar.col-xs-2
   %h3.font-size-mid みんなをフォローしよう！
-  - User.recommend(current_user).each do |recommend_user|
+  - current_user.recommend.each do |recommend_user|
     %div.card
       %div.card-block
         %div.card-title
