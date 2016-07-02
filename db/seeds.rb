@@ -28,3 +28,12 @@ FactoryGirl.create(:tweet, user_id:2, parent:tweet, body: 'user2 -> user1 コメ
 tweet = User.find_by(id: 1).tweets.first
 FactoryGirl.create(:tweet, user_id:3, parent:tweet, body: 'user3 -> user1 コメントテスト')
 
+tweet = User.find_by(id: 5).tweets.first
+FactoryGirl.create(:like, user_id:1, tweet_id: tweet.id )
+
+tweet = User.find_by(id: 5).tweets.first
+FactoryGirl.create(:like, user_id:2, tweet_id: tweet.id )
+
+tweet = User.find_by(id: 4).tweets.first
+FactoryGirl.create(:like, user_id:5, tweet_id: tweet.id )
+

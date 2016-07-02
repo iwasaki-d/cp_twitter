@@ -5,7 +5,7 @@ RSpec.describe Tweet, type: :model do
     context '正常系' do
       before do
         user = User.find_by(id: 1);
-        @tweet = build(:tweet, user: user, body: "test_wteet")
+        @tweet = build(:tweet, user: user, body: 'test_wteet')
       end
 
       it 'bodyの入力で保存出来ること' do
@@ -26,7 +26,6 @@ RSpec.describe Tweet, type: :model do
         tweet = User.find_by(id: 1).tweets.first
         expect(tweet.comments.length).to eq(2)
       end
-
     end
 
     context '異常系' do
@@ -59,8 +58,22 @@ RSpec.describe Tweet, type: :model do
       end
 
     end
-
   end
+
+  describe '#destroy' do
+    context '正常系' do
+      it '親ツィートが削除されてもコメントは残ること' do
+        tweet = User.find_by(id: 1).tweets.first
+        comment_id = tweet.comments.first.id
+
+        tweet.destroy
+
+        expect(Tweet.find_by(id: comment_id)).to be_present
+      end
+    end
+  end
+
+  private
 
   def make_max_length_body
     # 改行コードは2文字分
