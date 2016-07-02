@@ -59,3 +59,14 @@
 .comments_notification {
   background-color: lightskyblue !important;
 }
+
+.notice_up {
+  position: relative;
+  left: -1.8rem;
+  top:  -0.5rem;
+
+  &.hide {
+    display: none;
+  }
+}
+
