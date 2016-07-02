@@ -14,14 +14,14 @@ class TweetsController < ApplicationController
   end
 
   def new
-    @tweet = current_user.tweets.build()
+    @tweet = current_user.tweets.build
   end
 
   def edit
   end
 
   def create
-      @tweet = current_user.tweets.build(tweet_params)
+    @tweet = current_user.tweets.build(tweet_params)
 
     if @tweet.save
       redirect_to user_tweets_path(current_user), notice: 'ツイートしました。'

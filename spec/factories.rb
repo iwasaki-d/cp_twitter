@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :like do
-    user_id ""
+    user_id ''
     tweet_id 1
   end
 
@@ -9,7 +9,7 @@ FactoryGirl.define do
     sequence(:name) { |n| "user#{n}" }
     sequence(:password) { |n| "pass#{n}" }
     sequence(:password_confirmation) { |n| "pass#{n}" }
-    email ""
+    email ''
 
     after(:create) do |user|
       5.times do
@@ -22,7 +22,7 @@ FactoryGirl.define do
     sequence(:name) { |n| "user#{n}" }
     sequence(:password) { |n| "pass#{n}" }
     sequence(:password_confirmation) { |n| "pass#{n}" }
-    email ""
+    email ''
 
     after(:create) do |user|
       5.times do

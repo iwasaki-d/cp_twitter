@@ -8,7 +8,7 @@
         %h3 ツィートする
       .model-body
         .card.card-block{style: 'border-width:0'}
-          - tweet=current_user.tweets.build()
+          - tweet=current_user.tweets.build
           = simple_form_for(tweet, url: [current_user, tweet]) do |f|
             = f.error_notification
             = f.input :body, as: :text, label: false, class:'textarea', input_html: {rows: 10}, autofocus: true,

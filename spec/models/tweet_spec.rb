@@ -4,7 +4,7 @@ RSpec.describe Tweet, type: :model do
   describe '#create' do
     context '正常系' do
       before do
-        user = User.find_by(id: 1);
+        user = User.find_by(id: 1)
         @tweet = build(:tweet, user: user, body: 'test_wteet')
       end
 
@@ -32,7 +32,7 @@ RSpec.describe Tweet, type: :model do
       before { @tweet = Tweet.new }
 
       it 'bodyの入力なしでは保存できないこと' do
-        @tweet.user = User.find_by(id: 1);
+        @tweet.user = User.find_by(id: 1)
         not_to_be_valid_presence(@tweet, :body)
       end
 
@@ -43,13 +43,13 @@ RSpec.describe Tweet, type: :model do
 
       it '140文字制限を超える本文は保存できないこと' do
         @tweet.body = 'a'*141
-        @tweet.user = User.find_by(id: 1);
+        @tweet.user = User.find_by(id: 1)
         not_to_be_valid_max_length(@tweet, :body)
       end
 
       it '日本語英語記号混在でも140文字制限を超える本文は保存できないこと' do
         @tweet.body = make_max_length_body + 'a'
-        @tweet.user = User.find_by(id: 1);
+        @tweet.user = User.find_by(id: 1)
         not_to_be_valid_max_length(@tweet, :body)
       end
 

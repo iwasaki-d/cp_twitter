@@ -1,8 +1,8 @@
 $('#show_tweet_area').html("<%= j(render 'shared/show_tweet_modal', show_tweet: @tweet) %>");
 
 //_show_tweet_modal.coffee で同様の記述をしても動作しなかった為、DOM追加後に直接指定する
-$(function() {
-  return $('#comment_body').on('input', function() {
+$(function () {
+  return $('#comment_body').on('input', function () {
     return countTweetBody($(this), $('#comment_body_length'));
   });
 });

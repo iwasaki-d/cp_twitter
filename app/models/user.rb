@@ -64,7 +64,6 @@ class User < ActiveRecord::Base
       errors.add :image, "#{Constants::MIN_IMAGE_WIDTH_PIXELS}x"+
         "#{Constants::MIN_IMAGE_HEIGHT_PIXELS}ピクセル以上のサイズの画像をアップロードしてください"+
         "(現在：#{dimensions[:width]}x#{dimensions[:height]})"
-      return false
     end
   end
 end

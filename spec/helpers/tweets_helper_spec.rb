@@ -11,9 +11,9 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe TweetsHelper, type: :helper do
-  describe "initialize_remains_body_characters" do
+  describe 'initialize_remains_body_characters' do
     it '典型的なユーザー名' do
-      expect(helper.initialize_remains_body_characters("@user1")).to eq(134)
+      expect(helper.initialize_remains_body_characters('@user1')).to eq(134)
     end
 
     it 'ユーザー名入力がなかった場合' do
