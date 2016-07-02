@@ -1,50 +1,86 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  include ActionDispatch::TestProcess
+
   describe '#create' do
     context '正常系' do
-      before { @user = build(:auto_id_user, name: "test01", password: "pass01", password_confirmation: "pass01") }
+      before { @user = build(:auto_id_user, name: 'test01', password: 'pass01', password_confirmation: 'pass01') }
 
       it 'nameとpassword、password確認で保存出来ること' do
         expect(@user.save).to be_truthy
       end
 
       it 'nameと最小文字数のpassword、password確認で保存出来ること。' do
-        newuser = build(:auto_id_user, name: "test01", password: "1", password_confirmation: "1")
+        newuser = build(:auto_id_user, name: 'test01', password: '1', password_confirmation: '1')
         expect(newuser.save).to be_truthy
       end
 
-      it '日本語英語記号混在でもプロフィール140文字以内は許可しないこと' do
-        new_user = build(:auto_id_user, name: "test01", password: "", password_confirmation: "")
+      it '日本語英語記号混在でもプロフィール140文字以内であれば保存できること' do
+        @user.profile = make_max_length_body
 
-        new_user.profile = make_max_length_body + 'a'
-        expect(new_user.save).to be_falsey
+        expect(@user.save).to be_truthy
+      end
+
+      it 'プロフィール・プロフィール画像の指定がなくても作成できること' do
+        @user = build(:auto_id_user, name: 'test01')
+        @user.profile = ''
+        @user.image = ''
+        expect(@user.save).to be_truthy
       end
     end
 
     context '異常系' do
-      before { @user = create(:auto_id_user, name: "test01", password: "pass01", password_confirmation: "pass01") }
-
       it '同じ名前の登録は許可しないこと' do
-        new_user = build(:auto_id_user, name: "test01", password: "pass02", password_confirmation: "pass02")
+        new_user = build(:auto_id_user, name: 'test01', password: 'pass02', password_confirmation: 'pass02')
+        expect(new_user.save).to be_truthy
+
+        new_user = build(:auto_id_user, name: 'test01', password: 'pass02', password_confirmation: 'pass02')
         expect(new_user.save).to be_falsey
       end
 
       it '名前なしの登録は許可しないこと' do
-        new_user = build(:auto_id_user, name: "", password: "pass", password_confirmation: "pass")
+        new_user = build(:auto_id_user, name: '', password: 'pass', password_confirmation: 'pass')
         expect(new_user.save).to be_falsey
       end
 
       it 'パスワードなしの登録は許可しないこと' do
-        new_user = build(:auto_id_user, name: "test01", password: "", password_confirmation: "")
-        expect(new_user.save).to be_falsey
+        new_user = build(:auto_id_user, name: 'test01', password: '', password_confirmation: '')
+        not_to_be_valid_presence(new_user, :password)
       end
 
       it '日本語英語記号混在でも140文字制限を超えるプロフィールは保存できないこと' do
-        new_user = build(:auto_id_user, name: "test01", password: "", password_confirmation: "")
+        new_user = build(:auto_id_user, name: 'test01')
 
         new_user.profile = make_max_length_body + 'a'
-        expect(new_user.save).to be_falsey
+        not_to_be_valid_max_length(new_user, :profile)
+      end
+    end
+  end
+
+  describe '#update' do
+    context '正常系' do
+
+      it 'プロフィール画像がなくても保存できること' do
+        user = User.find_by(id: 3)
+        expect(user.update(name: 'user3')).to be_truthy
+      end
+
+      it 'プロフィール画像が規定のサイズ以上であれば保存できること' do
+        user = User.find_by(id: 3)
+        expect(user.update(image: fixture_file_upload('/images/200x200.png', 'image/png'))).to be_truthy
+      end
+    end
+
+    context '異常系' do
+      it 'プロフィール画像のwidthが規定のサイズ未満であれば保存させないこと' do
+        user = User.find_by(id: 3)
+        expect(user.update(image: fixture_file_upload('/images/199x200.png', 'image/png'))).to be_falsey
+      end
+
+      it 'プロフィール画像のheightが規定のサイズ未満であれば保存させないこと' do
+        user = User.find_by(id: 3)
+        expect(user.update(image: fixture_file_upload('/images/200x199.png', 'image/png'))).to be_falsey
       end
     end
   end

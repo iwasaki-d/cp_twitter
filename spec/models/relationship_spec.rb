@@ -18,7 +18,7 @@ RSpec.describe Relationship, type: :model do
         new_relationship.user = User.new();
         new_relationship.following_user = User.find_by(id: 1);
 
-        expect(new_relationship.save).to be_falsey
+        not_to_be_valid_presence(new_relationship, :user_id)
       end
 
       it '空のユーザーフォローは登録できないこと' do
@@ -26,7 +26,7 @@ RSpec.describe Relationship, type: :model do
         new_relationship.user = User.find_by(id: 5);
         new_relationship.following_user = User.new();
 
-        expect(new_relationship.save).to be_falsey
+        not_to_be_valid_presence(new_relationship, :following_user_id)
       end
 
       it '同じユーザーフォローは登録できないこと' do
@@ -51,5 +51,4 @@ RSpec.describe Relationship, type: :model do
       end
     end
   end
-
 end
