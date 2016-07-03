@@ -4,7 +4,7 @@ class Home < PageObject
   # クラスメソッドにするとcapybara::DSL(visit等々)が動作しなかった
   def open
     visit @@url_helpers.root_path
-    self
+    wait_load(self)
   end
 
   def login(name, password)

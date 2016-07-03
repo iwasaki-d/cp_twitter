@@ -11,7 +11,7 @@
           = f.input :body_or_user_name_cont, label: false, placeholder: 'ツィート・ユーザー名'
           = f.button :submit, class: 'btn btn-primary'
       %li.nav-item
-        = link_to header_user_image(current_user), edit_user_registration_path, class: 'nav-link'
+        = link_to header_user_image(current_user), edit_user_registration_path, class: 'nav-link', id: 'edit_user_header'
       %li.nav-item
         = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
       %li.nav-item
