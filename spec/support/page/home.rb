@@ -1,6 +1,8 @@
 require 'support/page/page_object'
 
 class Home < PageObject
+  include Header
+
   # クラスメソッドにするとcapybara::DSL(visit等々)が動作しなかった
   def open
     visit @@url_helpers.root_path
@@ -18,10 +20,4 @@ class Home < PageObject
     find('#create_user_home').click
     wait_load(SignUp.new)
   end
-
-  def go_create_user_on_header()
-    find('#create_user_header').click
-    wait_load(SignUp.new)
-  end
-
 end

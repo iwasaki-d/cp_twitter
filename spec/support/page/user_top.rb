@@ -1,8 +1,5 @@
 class UserTop < PageObject
-  def logout
-    click_on 'ログアウト'
-    wait_load(Home.new)
-  end
+  include Header
 
   def go_edit_user()
     find('#edit_user_header').click

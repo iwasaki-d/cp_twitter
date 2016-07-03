@@ -1,6 +1,8 @@
 require 'support/page/page_object'
 
 class SignUp < PageObject
+  include Header
+
   def create_user_success(name, password)
     fill_in 'アカウント名称', with: name
     fill_in 'パスワード', with: password

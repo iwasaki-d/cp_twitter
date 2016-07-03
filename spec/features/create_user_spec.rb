@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'ユーザー作成操作' do
-  background do
+  background :all do
     @name = 'test01'
     @password = 'pass01'
   end
