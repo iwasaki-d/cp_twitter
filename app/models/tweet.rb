@@ -17,6 +17,9 @@ class Tweet < ActiveRecord::Base
   private
 
   def user_notice_broadcast
-    NoticeToFollowerJob.perform_later self
+    # destroyの時にNoticeToFollowerJobを呼び出すとエラーが起きるので厳禁
+    if transaction_include_any_action?([:create])
+      NoticeToFollowerJob.perform_later self
+    end
   end
 end
