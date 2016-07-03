@@ -9,6 +9,7 @@ class PageObject
     # セレニウムを使ってfeatureテストを行う際にはページの読み込み待ちが必要
     wait = Selenium::WebDriver::Wait.new(:timeout => 10) # 秒
     wait.until { page.execute_script('return document.readyState') == 'complete' }
+    sleep(1)
     page_object
   end
 end

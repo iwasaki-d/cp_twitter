@@ -16,4 +16,5 @@
             .form-group.form-inline{style: 'height:1rem;'}
               #tweet_body_length.pull-xs-left
                 = initialize_remains_body_characters('')
-              = f.button :submit, class: 'form-control pull-xs-right', data: {disable_with: 'ツィート処理中...'}
+              = f.button :submit, 'ツィートする', class: 'form-control pull-xs-right', id:'do_tweet_on_dialog', data: {disable_with: 'ツィート処理中...'}
+
