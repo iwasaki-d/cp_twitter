@@ -1,6 +1,5 @@
 class NoticeToFollowerJob < ActiveJob::Base
   queue_as :default
-  include Rails.application.routes.url_helpers
 
   def perform(tweet)
     tweet.user.followers.each do |follower|
