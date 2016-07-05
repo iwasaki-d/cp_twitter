@@ -5,7 +5,7 @@ RSpec.describe Tweet, type: :model do
     context '正常系' do
       before do
         user = User.find_by(id: 1)
-        @tweet = build(:tweet, user: user, body: 'test_wteet')
+        @tweet = build(:tweet, user: user, body: 'test_tweet')
       end
 
       it 'bodyの入力で保存出来ること' do

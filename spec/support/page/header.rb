@@ -1,12 +1,12 @@
 module Header
-  def go_create_user_on_header()
+  def go_create_user_on_header
     find('#create_user_header').click
-    wait_load(SignUp.new)
+    wait_load SignUp.new
   end
 
   def logout
     click_on 'ログアウト'
-    wait_load(Home.new)
+    wait_load Home.new
   end
 
   def tweet(body_string)
@@ -14,6 +14,11 @@ module Header
     fill_in 'tweet[body]', with: body_string
     find('#do_tweet_on_dialog').click
 
-    wait_load(TweetTop.new)
+    wait_load TweetTop.new
+  end
+
+  def go_edit_user
+    find('#edit_user_header').click
+    wait_load UserRegistrations.new
   end
 end

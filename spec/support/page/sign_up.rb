@@ -10,6 +10,6 @@ class SignUp < PageObject
 
     click_button 'アカウント作成'
 
-    wait_load(UserTop.new)
+    wait_load UserTop.new
   end
 end

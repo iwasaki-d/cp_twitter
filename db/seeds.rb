@@ -12,7 +12,7 @@ User.delete_all
 Tweet.delete_all
 Relationship.delete_all
 
-FactoryGirl.create_list(:user, 5)
+FactoryGirl.create_list(:user, 6)
 FactoryGirl.create(:relationship, user_id:1, following_user_id:2)
 FactoryGirl.create(:relationship, user_id:1, following_user_id:3)
 
@@ -36,4 +36,5 @@ FactoryGirl.create(:like, user_id:2, tweet_id: tweet.id )
 
 tweet = User.find_by(id: 4).tweets.first
 FactoryGirl.create(:like, user_id:5, tweet_id: tweet.id )
+
 
