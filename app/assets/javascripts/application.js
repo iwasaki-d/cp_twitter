@@ -4,8 +4,6 @@
 //= require turbolinks
 //= require tether
 //= require bootstrap-sprockets
-//= require cable
-//= require cp_twitter_cable
 //= require_tree .
 
 window.cpTwitter = {}

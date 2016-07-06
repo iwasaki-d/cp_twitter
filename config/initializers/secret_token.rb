@@ -1,0 +1,1 @@
+CpTwitter::Application.config.secret_key_base = '4ae703eab929605f2ff7c5622b47b57e93ba3c9bea6a76f2bcb362c3950b4526b39ef033cea1078f702073c9a79ba149d08450a8530425dff83a2e09189647c0'
