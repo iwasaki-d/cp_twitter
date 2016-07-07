@@ -16,6 +16,7 @@ gem 'ransack'
 gem 'kaminari'
 gem 'jquery-turbolinks'
 gem 'quiet_assets'
+gem 'dekiru'
 
 gem 'bootstrap', '~> 4.0.0.alpha3'
 source 'https://rails-assets.org' do
