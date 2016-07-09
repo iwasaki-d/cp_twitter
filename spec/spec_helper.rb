@@ -31,4 +31,11 @@ RSpec.configure do |config|
     Capybara::Selenium::Driver.new(app, browser: :firefox)
   end
   Capybara.javascript_driver = :firefox
+
+  config.before(:suite) do
+    #tweetモデルがコミット後にredisを使った処理をするため、redisサーバーを立ち上げないとseedが失敗する
+    system('redis-server')
+
+    require Rails.root.join('db', 'seeds')
+  end
 end
