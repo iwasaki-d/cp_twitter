@@ -10,4 +10,4 @@
     = simple_form_for(like, url: user_tweet_likes_path(tweet.user, tweet), method: 'delete', remote: true) do |f|
       = f.button :submit, '♥', class: 'btn btn-danger btn-sm', data: {disable_with: '♥...'}
 .card-like-counter
-  = link_to tweet.likes_count, users_list_user_tweet_likes_path(tweet.user, tweet), method: :get
+  = link_to tweet.likes_count, users_list_user_tweet_likes_path(tweet.user, tweet)
