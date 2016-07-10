@@ -10,7 +10,7 @@ class RelationshipsController < ApplicationController
   end
 
   def destroy
-    @following_relationship.destroy
+    @following_relationship.destroy!
     redirect_to :back, notice: 'フォローを解除しました。'
   end
 

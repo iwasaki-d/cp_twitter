@@ -39,18 +39,18 @@ class TweetsController < ApplicationController
   end
 
   def destroy
-    @tweet.destroy
+    @tweet.destroy!
     redirect_to user_tweets_path(current_user), notice: 'ツイートを削除しました。'
   end
 
   private
 
   def set_user
-    @user = User.find_by(id: params[:user_id])
+    @user = User.find(params[:user_id])
   end
 
   def set_tweet
-    @tweet = Tweet.find_by(id: params[:id])
+    @tweet = Tweet.find(params[:id])
   end
 
   def authenticate_current_user

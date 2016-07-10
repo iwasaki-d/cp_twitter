@@ -62,24 +62,24 @@ RSpec.describe User, type: :model do
     context '正常系' do
 
       it 'プロフィール画像がなくても保存できること' do
-        user = User.find_by(id: 3)
+        user = User.find(3)
         expect(user.update(name: 'user3')).to be_truthy
       end
 
       it 'プロフィール画像が規定のサイズ以上であれば保存できること' do
-        user = User.find_by(id: 3)
+        user = User.find(3)
         expect(user.update(image: fixture_file_upload('/images/200x200.png', 'image/png'))).to be_truthy
       end
     end
 
     context '異常系' do
       it 'プロフィール画像のwidthが規定のサイズ未満であれば保存させないこと' do
-        user = User.find_by(id: 3)
+        user = User.find(3)
         expect(user.update(image: fixture_file_upload('/images/199x200.png', 'image/png'))).to be_falsey
       end
 
       it 'プロフィール画像のheightが規定のサイズ未満であれば保存させないこと' do
-        user = User.find_by(id: 3)
+        user = User.find(3)
         expect(user.update(image: fixture_file_upload('/images/200x199.png', 'image/png'))).to be_falsey
       end
     end
@@ -88,7 +88,7 @@ RSpec.describe User, type: :model do
   describe '#destroy' do
     context '正常系' do
       it '削除することで関連データも削除されること' do
-        delete_user = User.find_by(id: 5)
+        delete_user = User.find(5)
         delete_user.following_relationships.create(following_user_id: 1)
 
         expect(Relationship.where(user_id: delete_user.id).size).to be > 0
@@ -106,7 +106,7 @@ RSpec.describe User, type: :model do
   describe '#following' do
     context '正常系' do
       it 'followingで対象ユーザーがフォローしているユーザー一覧が取得出来ること' do
-        expect(User.find_by(id: 2).following.pluck(:id)).to match_array [3, 4]
+        expect(User.find(2).following.pluck(:id)).to match_array [3, 4]
       end
     end
   end
@@ -114,7 +114,7 @@ RSpec.describe User, type: :model do
   describe '#followers' do
     context '正常系' do
       it 'followersで対象ユーザーをフォローしているユーザー一覧が取得出来ること' do
-        expect(User.find_by(id: 3).followers.pluck(:id)).to match_array [1, 2]
+        expect(User.find(3).followers.pluck(:id)).to match_array [1, 2]
       end
     end
   end
@@ -123,7 +123,7 @@ RSpec.describe User, type: :model do
     context '正常系' do
       it 'ユーザーのタイムラインには自身のツィート・フォローしているユーザーのツィート・いいねしたツィートが含まれること' do
 
-        user = User.find_by(id: 1)
+        user = User.find(1)
         expect_tweets = user.tweets.pluck(:id)
         user.following.each do |following|
           expect_tweets.concat(following.tweets.pluck(:id))
@@ -141,7 +141,7 @@ RSpec.describe User, type: :model do
   describe '#recommend' do
     context '正常系' do
       it 'ユーザーにリコメンドするおすすめユーザーにフォローしているユーザーは含まれないこと' do
-        user = User.find_by(id: 1)
+        user = User.find(1)
         expect_users = user.following.pluck(:id)
 
         # 取得したタイムラインの1ページ目の要素全てがexpect_usersのいずれかにも含まれていないかチェックしたい
