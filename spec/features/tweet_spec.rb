@@ -8,18 +8,19 @@ feature 'ツィート操作' do
     @tweet_body = "features/tweet_spec.rb テストツィート#{Time.now.strftime '%Y/%m/%d %H:%M:%S'}"
   end
 
-  after :all do
-    # @name = 'tweet_test_01'
-    # @password = 'pass01'
-    #
-    # user_top = Home.new().open.login(@name, @password)
-    # user_top.go_edit_user.destroy_user_success
-  end
-
   scenario 'ツィートを行う' do
     user_top = Home.new.open.login(@name, @password)
     user_top.tweet(@tweet_body)
     expect(page).to have_content(@tweet_body)
+  end
+
+  scenario 'ツィートを詳細表示をモーダルダイアログで見ることができる' do
+    user_top = Home.new.open.login(@name, @password)
+    expect(page).to have_content(@tweet_body)
+
+    tweet_id = user_top.tweet_id_from_card
+    user_top.show_tweet_modal_dialog(tweet_id)
+    expect(user_top.show_tweet_modal_dialog?).to be_truthy
   end
 
   scenario 'ツィートを編集する画面に移動できる' do
@@ -52,5 +53,4 @@ feature 'ツィート操作' do
     expect(page).not_to have_content(@tweet_body)
     expect(page).to have_current_path(user_tweets_path @user_id)
   end
-
 end
