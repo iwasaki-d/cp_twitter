@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :tweets, format: false do
       resource :likes, only: [:create, :destroy], format: false do
         collection do
-          get :users_list, only: [:create, :destroy], format: false
+          get :users_list, format: false
         end
       end
       resources :comments, only: [:index, :create, :destroy], format: false
