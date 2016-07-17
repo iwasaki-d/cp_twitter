@@ -34,7 +34,7 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     #tweetモデルがコミット後にredisを使った処理をするため、redisサーバーを立ち上げないとseedが失敗する
-    system('redis-server')
+    Process.spawn 'redis-server'
 
     require Rails.root.join('db', 'seeds')
   end

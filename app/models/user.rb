@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
 
-  validates :profile, length: {maximum: Constants::MAX_LENGTH_TWEET}
+  validates :profile, length: { maximum: Constants::MAX_LENGTH_TWEET }
   validate :valid_image_dimensions?, on: :update
 
   has_many :following_relationships, class_name: 'Relationship', foreign_key: 'user_id', dependent: :destroy

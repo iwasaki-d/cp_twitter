@@ -1,5 +1,5 @@
 class RelationshipsController < ApplicationController
-  before_action :set_following_relationship, only: [:create, :destroy]
+  before_action :set_following_relationship, only: %i(create destroy)
 
   def create
     if @following_relationship.save

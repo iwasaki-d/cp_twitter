@@ -1,6 +1,6 @@
 class LikesController < ApplicationController
-  before_action :set_like, only: [:create, :destroy, :users_list]
-  before_action :set_tweet, only: [:create, :destroy, :users_list]
+  before_action :set_like, only: %i(create destroy users_list)
+  before_action :set_tweet, only: %i(create destroy users_list)
 
   def users_list
     @users = @tweet.like_users.page(params[:users_page]).per(Constants::LIKE_USERS_PAR)

@@ -1,9 +1,10 @@
 class CommentsController < ApplicationController
-  before_action :set_commented_tweet, only: [:index, :create, :destroy]
-  before_action :set_comment, only: [:create, :destroy]
+  before_action :set_commented_tweet, only: %i(index create destroy)
+  before_action :set_comment, only: %i(create destroy)
 
   def index
-    @comments = @commented_tweet.comments.order_latest.page(params[:comments_page]).per(Constants::COMMENT_TWEETS_PAR)
+    @comments = @commented_tweet.comments.order_latest
+                  .page(params[:comments_page]).per(Constants::COMMENT_TWEETS_PAR)
     respond_to do |format|
       format.js { render 'index' }
     end

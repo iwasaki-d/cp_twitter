@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action :set_user, only: [:index]
+  before_action :set_user, only: %i(index)
 
   def index
     if user_signed_in?

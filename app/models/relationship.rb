@@ -14,7 +14,7 @@ class Relationship < ActiveRecord::Base
   belongs_to :user, counter_cache: 'following_count'
   belongs_to :following_user, class_name: 'User', foreign_key: 'following_user_id', counter_cache: 'followers_count'
 
-  validates :user_id, presence: true, uniqueness: {scope: [:following_user_id]}
+  validates :user_id, presence: true, uniqueness: { scope: [:following_user_id] }
   validates :following_user_id, presence: true
 
 end

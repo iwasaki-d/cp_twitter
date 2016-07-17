@@ -41,7 +41,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   def dimensions
     if file && model
       img = ::Magick::Image::read(file.file).first
-      {width: img.columns, height: img.rows}
+      { width: img.columns, height: img.rows }
     end
   end
 end
