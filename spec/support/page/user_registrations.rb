@@ -1,4 +1,5 @@
-require './page_object'
+require 'support/page/page_object'
+require 'support/page/header'
 
 class UserRegistrations < PageObject
   def destroy_user_success
