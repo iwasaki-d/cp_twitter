@@ -1,4 +1,5 @@
-require 'support/page/page_object'
+require './page_object'
+require './header.rb'
 
 class Home < PageObject
   include Header

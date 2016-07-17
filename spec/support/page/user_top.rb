@@ -1,3 +1,6 @@
+require './page_object'
+require './header.rb'
+
 class UserTop < PageObject
   include Header
 
