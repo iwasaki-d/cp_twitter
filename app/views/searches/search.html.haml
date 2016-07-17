@@ -18,7 +18,7 @@
             .card.card-tweet
               .card-header
                 = default_user_image(tweet.user)
-                = link_to tweet.user.name, user_path(tweet.user.id)
+                = link_to tweet.user.name, tweet.user
               .card-block
                 .card-text
                   #{tweet.body}

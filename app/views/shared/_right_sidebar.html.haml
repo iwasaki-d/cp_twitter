@@ -6,6 +6,6 @@
     %div.card
       %div.card-block
         %div.card-title
-          = link_to recommend_user.name, user_tweets_path(recommend_user)
+          = link_to recommend_user.name, [recommend_user, :tweets]
         %div.card-text
           = render 'shared/follow_button', following_user: recommend_user

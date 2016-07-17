@@ -3,7 +3,7 @@
 .card
   .card-header
     = default_user_image(user)
-    = link_to user.name, user_path(user)
+    = link_to user.name, user
     .pull-xs-right
       = render 'shared/follow_button', following_user: user
   .card-block.card-user
