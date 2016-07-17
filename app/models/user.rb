@@ -48,6 +48,14 @@ class User < ActiveRecord::Base
       .eager_load(:user).order_latest.page(load_page).per(Constants::DEFAULT_TWEETS_PAR)
   end
 
+  def to_param
+    self.name
+  end
+
+  def self.find_by_param(user_name)
+    User.find_by_name(user_name)
+  end
+
   def recommend
     # RANDOMはSQLLITE,POSTGRESQL依存。かつ、ほとんどのUSERのレコードが対象になりランダムに取得する重い処理なのでUsersの全レコード数に注意すること。今回はコピーサービスなのでそのまま
     User.where('NOT EXISTS ( SELECT * FROM relationships a WHERE users.id = a.following_user_id AND a.user_id = ?) AND users.id <> ? ', self.id, self.id)

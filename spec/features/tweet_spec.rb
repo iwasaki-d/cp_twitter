@@ -29,7 +29,7 @@ feature 'ツィート操作' do
 
     tweet_id = user_top.tweet_id_from_card
     user_top.go_tweet_update tweet_id
-    expect(page).to have_current_path(edit_user_tweet_path(@user_id, tweet_id))
+    expect(page).to have_current_path(edit_user_tweet_path(@name, tweet_id))
   end
 
   scenario 'ツィートを編集することができる' do
@@ -51,6 +51,6 @@ feature 'ツィート操作' do
     user_top.delete tweet_id
 
     expect(page).not_to have_content(@tweet_body)
-    expect(page).to have_current_path(user_tweets_path @user_id)
+    expect(page).to have_current_path(user_tweets_path @name)
   end
 end

@@ -23,6 +23,6 @@
               #comment_body_length.pull-xs-left
                 = initialize_remains_body_characters(comment.body)
               = f.button :submit, "@#{tweet_owner.name}さんへコメントする", class: 'form-control pull-xs-right', data: {disable_with: 'コメント処理中...'}
-        = button_to 'コメントを表示する', user_tweet_comments_path(user_id: tweet_owner, tweet_id: show_tweet), method: :get,
+        = button_to 'コメントを表示する', user_tweet_comments_path(user_id: tweet_owner.name, tweet_id: show_tweet), method: :get,
          id:'show_tweet_show_comment',remote: true, style: 'display:none;'
         .card-comments#show_comments_area

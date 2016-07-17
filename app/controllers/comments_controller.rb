@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :set_commented_user, only: %i(index create destroy)
   before_action :set_commented_tweet, only: %i(index create destroy)
   before_action :set_comment, only: %i(create destroy)
 
@@ -24,8 +25,12 @@ class CommentsController < ApplicationController
 
   private
 
+  def set_commented_user
+    @commented_user = User.find_by_param(params[:user_id])
+  end
+
   def set_commented_tweet
-    @commented_tweet = Tweet.find_by!(id: params[:tweet_id], user_id: params[:user_id])
+    @commented_tweet = @commented_user.tweets.find(params[:tweet_id])
   end
 
   def set_comment
